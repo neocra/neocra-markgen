@@ -6,6 +6,10 @@
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <WarningsAsErrors>nullable</WarningsAsErrors>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>markgen</ToolCommandName>
+        <license type="expression">Apache-2.0</license>
+        <icon>images\icon.png</icon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,6 +26,7 @@
     <ItemGroup>
       <EmbeddedResource Include="Template\Menu.html.liquid" />
       <EmbeddedResource Include="Template\View.html.liquid" />
+      <file src="..\icon.png" target="images\" />
     </ItemGroup>
 
 </Project>
