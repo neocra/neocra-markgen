@@ -9,7 +9,7 @@
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>markgen</ToolCommandName>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-        <PackageIcon>packageIcon.png</PackageIcon>
+        <PackageIcon>icon.png</PackageIcon>
         <IsPackable>true</IsPackable>
     </PropertyGroup>
 
