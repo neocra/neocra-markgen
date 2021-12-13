@@ -8,7 +8,7 @@
         <WarningsAsErrors>nullable</WarningsAsErrors>
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>markgen</ToolCommandName>
-        <license type="expression">Apache-2.0</license>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <icon>images\icon.png</icon>
     </PropertyGroup>
 
