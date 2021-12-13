@@ -1,0 +1,23 @@
+
+{{ if children.size != 0 }}
+<ul>
+    {{ for item in children  }}
+        <li>
+            {{ if item.uri_path }}
+                <a href="{{ item.uri_path }}">
+                    {{ item.title }}
+                </a>
+            {{ else }}
+                {{ item.title }}
+            {{ end }}
+            
+            {{ 
+                context = {children:item.children}
+                with  context
+                    include "Menu"
+                end
+            }}
+        </li>
+    {{end}}
+</ul>
+{{end}}
