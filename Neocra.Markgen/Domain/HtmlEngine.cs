@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Neocra.Markgen.Infrastructure;
 using Scriban;
 using Scriban.Parsing;
 using Scriban.Runtime;
@@ -8,10 +9,12 @@ namespace Neocra.Markgen.Domain;
 public class HtmlEngine
 {
     private readonly HtmlEngineLoader htmlEngineLoader;
+    private readonly IScriban scriban;
 
-    public HtmlEngine(HtmlEngineLoader htmlEngineLoader)
+    public HtmlEngine(HtmlEngineLoader htmlEngineLoader, IScriban scriban)
     {
         this.htmlEngineLoader = htmlEngineLoader;
+        this.scriban = scriban;
     }
 
     public async Task<string> CompileRenderAsync<T>(string view, T modelMarkdownFile)
@@ -30,6 +33,8 @@ public class HtmlEngine
 
         var template = await this.htmlEngineLoader.LoadAsync(context, new SourceSpan(), path);
 
-        return await Template.Parse(template).RenderAsync(context);
+        return await this.scriban.RenderAsync(template, context);
     }
+
+   
 }
