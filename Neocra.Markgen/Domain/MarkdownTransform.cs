@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Markdig;
 using Markdig.Extensions.Yaml;
 using Markdig.Syntax;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.FileProviders.Physical;
 using Neocra.Markgen.Domain.Markdig;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -32,7 +34,7 @@ public class MarkdownTransform
             .Build();
 
         var document = Markdown.Parse(markdown, pipeline, new MarkdownParserContext());
-        var modelMarkdownFile = new MarkdownPage(new FileInfo(""), document, GetFrontMatter(document));
+        var modelMarkdownFile = new MarkdownPage(new PhysicalFileInfo(new FileInfo("")), document, GetFrontMatter(document));
 
         return await this.RenderHtml(new RenderModelMarkdownPage(new MenuItem("", "", ""), modelMarkdownFile, document.ToHtml(pipeline)), string.Empty);
     }
@@ -42,19 +44,22 @@ public class MarkdownTransform
         return await this.engine.CompileRenderAsync("View", modelMarkdownPageMarkdownFile);
     }
 
-    public async Task<MarkdownPage> GetModelMarkdownFile(FileInfo file)
+    public async Task<MarkdownPage> GetModelMarkdownFile(IFileInfo file)
     {
-        var sourceMd = await File.ReadAllTextAsync(file.FullName);
-        var pipeline = new MarkdownPipelineBuilder()
-            .UseAdvancedExtensions()
-            .Use(rapidocExtension)
-            .Use<DiagramExtension>()
-            .UseYamlFrontMatter()
-            .Build();
+        using (var reader = new StreamReader(file.CreateReadStream()))
+        {
+            var sourceMd = await reader.ReadToEndAsync();
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Use(rapidocExtension)
+                .Use<DiagramExtension>()
+                .UseYamlFrontMatter()
+                .Build();
 
-        var document = Markdown.Parse(sourceMd, pipeline, new MarkdownParserContext());
+            var document = Markdown.Parse(sourceMd, pipeline, new MarkdownParserContext());
 
-        return new MarkdownPage(file, document, GetFrontMatter(document));
+            return new MarkdownPage(file, document, GetFrontMatter(document));
+        }
     }
 
     private PageFrontMatter GetFrontMatter(MarkdownDocument document)

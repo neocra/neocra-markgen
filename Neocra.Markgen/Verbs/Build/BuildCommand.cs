@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Humanizer;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.FileProviders.Physical;
 using Microsoft.Extensions.Logging;
 using Neocra.Markgen.Domain;
 using Neocra.Markgen.Tools;
@@ -15,25 +17,28 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
 {
     private readonly ILogger logger;
     private readonly RendersProvider rendersProvider;
+    private readonly IFileProviderFactory fileProviderFactory;
     private readonly MarkdownTransform markdownTransform;
 
-    public BuildCommand(MarkdownTransform markdownTransform, ILogger<BuildCommand> logger, RendersProvider rendersProvider)
+    public BuildCommand(MarkdownTransform markdownTransform, ILogger<BuildCommand> logger, RendersProvider rendersProvider, IFileProviderFactory fileProviderFactory)
     {
         this.markdownTransform = markdownTransform;
         this.logger = logger;
         this.rendersProvider = rendersProvider;
+        this.fileProviderFactory = fileProviderFactory;
     }
         
     public async Task RunAsync(BuildOptions options)
     {
         this.logger.LogInformation("Begin build");
         var optionsSource = ".";
+
         if (!string.IsNullOrEmpty(options.Source))
         {
             optionsSource = options.Source;
         }
-
-        var destination = "Markgen";
+        
+        var destination = ".markgen";
         if (!string.IsNullOrEmpty(options.Destination))
         {
             destination = options.Destination;
@@ -41,7 +46,15 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
             
         await CopyEmbeddedFile(destination, "splendor.min.css");
             
-        var (sourceEntries, menu) = await this.GetSources(optionsSource, optionsSource, options.BaseUri ?? string.Empty);
+        var directorySource = new DirectoryInfo(optionsSource);
+        var physicalFileProvider =
+            fileProviderFactory.GetProvider(directorySource.FullName);
+        
+        var (sourceEntries, menu) = await this.GetSources(physicalFileProvider, 
+            "",
+            optionsSource, 
+            optionsSource,
+            options.BaseUri ?? string.Empty);
 
         this.logger.LogDebug("Menu is :");
 
@@ -59,46 +72,55 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
         }
     }
 
-    private async Task<(List<Entry>, MenuItem)> GetSources(string source, string baseDirectory, string baseUri)
+    private async Task<(List<Entry>, MenuItem)> GetSources(IFileProvider fileProvider, string subPath, string source, string baseDirectory, string baseUri)
     {
-        var entries = new List<Entry>();
         var directorySource = new DirectoryInfo(source);
+        var entries = new List<Entry>();
         var subMenuItems = new List<MenuItem>();
         MenuItem? menu = null;
-
-        var files = GetFiles(directorySource);
+        var files = GetFiles(fileProvider, subPath);
 
         foreach (var info in files)
         {
-            if (info is DirectoryInfo directoryInfo)
+            if (info.IsDirectory)
             {
-                var (sourceEntries,subMenu) = await this.GetSources(info.FullName, baseDirectory, baseUri);
+                if (info.Name == ".git")
+                {
+                    continue;
+                }
+                
+                if (info.Name == ".markgen")
+                {
+                    continue;
+                }
+                
+                var (sourceEntries,subMenu) = await this.GetSources(fileProvider, Path.Combine(subPath, info.Name), info.PhysicalPath, baseDirectory, baseUri);
                 entries.AddRange(sourceEntries);
                 subMenuItems.Add(subMenu);
             }
-            else if (info is FileInfo fileInfo)
+            else
             {
                 if (info.Name == "README.md")
                 {
-                    menu = new MenuItem("README", info.FullName, this.GetUri(baseUri, baseDirectory, info.FullName));
+                    menu = new MenuItem("README", info.PhysicalPath, this.GetUri(baseUri, baseDirectory, info.PhysicalPath));
                 }
                 
-                if (info.Extension == ".md")
+                if (Path.GetExtension(info.Name) == ".md")
                 {
-                    this.logger.LogInformation("Found {mdFile}", info);
-                    var modelMarkdownFile = await this.markdownTransform.GetModelMarkdownFile(fileInfo);
-                    subMenuItems.Add(new MenuItem(GetTitleFromMarkdownFile(modelMarkdownFile), modelMarkdownFile.FileInfo.FullName, this.GetUri(baseUri, baseDirectory, modelMarkdownFile.FileInfo.FullName)));
+                    this.logger.LogInformation("Found {mdFile}", info.PhysicalPath);
+                    var modelMarkdownFile = await this.markdownTransform.GetModelMarkdownFile(info);
+                    subMenuItems.Add(new MenuItem(GetTitleFromMarkdownFile(modelMarkdownFile), modelMarkdownFile.FileInfo.PhysicalPath, this.GetUri(baseUri, baseDirectory, modelMarkdownFile.FileInfo.PhysicalPath)));
                     entries.Add(modelMarkdownFile);
                 }
 
-                if (info.Extension == ".png")
+                if (Path.GetExtension(info.Name) == ".png")
                 {
-                    entries.Add(new Image(fileInfo));
+                    entries.Add(new Image(info));
                 }
                 
-                if (info.Extension == ".jpeg")
+                if (Path.GetExtension(info.Name) == ".jpeg")
                 {
-                    entries.Add(new Image(fileInfo));
+                    entries.Add(new Image(info));
                 }
             }
         }
@@ -129,49 +151,45 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
         return $"{baseUri}/{path.Substring(0,path.Length - extension.Length)}.html";
     }
 
-    private static FileSystemInfo[] GetFiles(DirectoryInfo directorySource)
-    {
-        var orderFile = Path.Combine(directorySource.FullName, ".order");
-        if (File.Exists(orderFile))
+    private static IFileInfo[] GetFiles(IFileProvider physicalFileProvider, string subpath)
+    {       
+        var source = physicalFileProvider;
+
+        var orderFile = source.GetFileInfo(Path.Combine(subpath, ".order")); ;
+        if (orderFile.Exists)
         {
-            var infos = File.ReadLines(orderFile)
-                .Select(o => ToFileSystem(directorySource, o))
+            var infos = File.ReadLines(orderFile.PhysicalPath)
+                .Select(o => ToFileSystem(source, o))
                 .Where(o => o != null)
-                .Cast<FileSystemInfo>()
+                .Select(o => (IFileInfo)o!)
                 .ToArray();
 
             return
                 infos
                     .Union(
-                        directorySource.GetDirectories()
-                            .Cast<FileSystemInfo>()
-                            .Union(directorySource.GetFiles())
-                            .ToArray(), 
-                        new FileSystemEquality()
+                        source.GetDirectoryContents(subpath).ToArray(), 
+                        new FileInfoEquality()
                         )
                     .ToArray();
         }
 
         return
-            directorySource.GetDirectories()
-                .Cast<FileSystemInfo>()
-                .Union(directorySource.GetFiles())
-                .ToArray();
+            source.GetDirectoryContents(subpath).ToArray();
     }
 
-    private static FileSystemInfo? ToFileSystem(DirectoryInfo directorySource, string o)
+    private static IFileInfo? ToFileSystem(IFileProvider source, string o)
     {
-        var fileName = Path.Combine(directorySource.FullName, $"{o}.md");
-        var directoryName = Path.Combine(directorySource.FullName, $"{o}");
+        var file = source.GetFileInfo($"{o}.md");
+        var directory = source.GetFileInfo($"{o}");
 
-        if (Directory.Exists(directoryName))
+        if (directory.Exists)
         {
-            return new DirectoryInfo(directoryName);
+            return directory;
         }
 
-        if (File.Exists(fileName))
+        if (file.Exists)
         {
-            return new FileInfo(fileName);
+            return file;
         }
         
         return null;
@@ -204,6 +222,32 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
             file.Flush();
             file.Close();
         }
+    }
+}
+
+public interface IFileProviderFactory
+{
+    IFileProvider GetProvider(string directorySourceFullName);
+}
+
+class PhysicalFileProviderFactory : IFileProviderFactory
+{
+    public IFileProvider GetProvider(string directorySourceFullName)
+    {
+        return new PhysicalFileProvider(directorySourceFullName, ExclusionFilters.None);
+    }
+}
+
+internal class FileInfoEquality : IEqualityComparer<IFileInfo>
+{
+    public bool Equals(IFileInfo? x, IFileInfo? y)
+    {
+        return false;
+    }
+    
+    public int GetHashCode(IFileInfo obj)
+    {
+        return 0;
     }
 }
 

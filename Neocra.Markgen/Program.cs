@@ -1,9 +1,11 @@
 ﻿using System.CommandLine;
+using System.CommandLine.IO;
 using System.Threading.Tasks;
 using Markdig;
 using Microsoft.Extensions.DependencyInjection;
 using Neocra.Markgen.Domain;
 using Neocra.Markgen.Domain.Markdig;
+using Neocra.Markgen.Infrastructure;
 using Neocra.Markgen.Tools;
 using Neocra.Markgen.Verbs.Build;
 using Neocra.Markgen.Verbs.Watch;
@@ -15,7 +17,7 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace Neocra.Markgen
 {
-    class Program
+    public class Program
     {
         static async Task Main(string[] args)
         {
@@ -23,6 +25,11 @@ namespace Neocra.Markgen
 
             AddServices(serviceCollection);
 
+            await RunAsync(serviceCollection, new SystemConsole(), args);
+        }
+
+        public static async Task RunAsync(ServiceCollection serviceCollection, IConsole console, params string[] args)
+        {
             var builder = serviceCollection.BuildServiceProvider();
 
             var handleFactory = new HandlerFactory(builder);
@@ -35,13 +42,15 @@ namespace Neocra.Markgen
 
             command.Name = "markgen";
 
-            await command.InvokeAsync(args);
+            await command.InvokeAsync(args, console);
         }
 
         private static void AddServices(ServiceCollection services)
         {
             services.AddSingleton<HtmlEngine>();
 
+            services.AddSingleton<IScriban, Infrastructure.Scriban>();
+            
             services.AddSingleton<MarkdownTransform>();
             services.AddSingleton<BuildCommand>();
             services.AddSingleton<WatchCommand>();
@@ -49,6 +58,8 @@ namespace Neocra.Markgen
             services.AddSingleton<CodeBlockRenderer>();
             services.AddSingleton<RapidocExtension>();
             services.AddSingleton<RendersProvider>();
+
+            services.AddSingleton<IFileProviderFactory, PhysicalFileProviderFactory>();
 
             services.AddSingleton(new DeserializerBuilder()
                 .IgnoreUnmatchedProperties()

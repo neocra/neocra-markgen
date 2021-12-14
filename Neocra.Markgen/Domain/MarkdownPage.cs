@@ -1,11 +1,12 @@
 using System.IO;
 using Markdig.Syntax;
+using Microsoft.Extensions.FileProviders;
 
 namespace Neocra.Markgen.Domain;
 
 public class MarkdownPage : Entry
 {
-    public MarkdownPage(FileInfo fileInfo,
+    public MarkdownPage(IFileInfo fileInfo,
         MarkdownDocument markdownDocument,
         PageFrontMatter frontMatter)
     {
@@ -14,11 +15,11 @@ public class MarkdownPage : Entry
         this.FrontMatter = frontMatter;
     }
 
-    public FileInfo FileInfo { get; }
+    public IFileInfo FileInfo { get; }
     public MarkdownDocument MarkdownDocument { get; }
 
     public PageFrontMatter FrontMatter { get; }
 
 
-    public override string Name => FileInfo.FullName;
+    public override string Name => FileInfo.PhysicalPath;
 }

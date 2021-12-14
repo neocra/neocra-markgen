@@ -76,7 +76,7 @@ public class RendersProvider
         var markdownPage1 = new RenderModelMarkdownPage(menu, markdownPage, content);
 
         var mdFileInfo = markdownPage1.Model.FileInfo;
-        var destinationFile = Path.GetRelativePath(optionsSource, mdFileInfo.FullName);
+        var destinationFile = Path.GetRelativePath(optionsSource, mdFileInfo.PhysicalPath);
         destinationFile = Path.Combine(destination, destinationFile);
         destinationFile = Path.ChangeExtension(destinationFile, ".html");
             
@@ -92,7 +92,7 @@ public class RendersProvider
 
     private async Task Render(Image image, string source, string destination)
     {
-        var destinationFile = Path.GetRelativePath(source, image.FileInfo.FullName);
+        var destinationFile = Path.GetRelativePath(source, image.FileInfo.PhysicalPath);
         destinationFile = Path.Combine(destination, destinationFile);
 
         var directoryInfo = new FileInfo(destinationFile).Directory;
@@ -101,6 +101,6 @@ public class RendersProvider
             directoryInfo.Create();
         }
         
-        File.Copy(image.FileInfo.FullName, destinationFile, true);
+        File.Copy(image.FileInfo.PhysicalPath, destinationFile, true);
     }
 }
