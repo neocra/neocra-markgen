@@ -50,6 +50,7 @@ namespace Neocra.Markgen
             services.AddSingleton<HtmlEngine>();
 
             services.AddSingleton<IScriban, Infrastructure.Scriban>();
+            services.AddSingleton<IFileWriter, FileWriter>();
             
             services.AddSingleton<MarkdownTransform>();
             services.AddSingleton<BuildCommand>();

@@ -1,0 +1,2407 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.0.0/github-markdown.min.css" integrity="sha512-nxv6uny69e6SeGW/aOEW0iC2+ruQMKvFDbjav6sVu1dr89ioo5wBm3F0IbBGsNyAt6nuBR/x2HUSx0a7wLEegA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+</head>
+<body>
+<div>
+    <menu>
+        
+
+<ul>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Overall-Architecture.html">
+                    Overall Architecture
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Getting-started.html">
+                    Getting started
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Users.html">
+                    Users
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/RFID-Cards.html">
+                    RFID Cards
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Card-Pricing.html">
+                    Card Pricing
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/References.html">
+                    References
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Vehicles.html">
+                    Vehicles API
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Services.html">
+                    Services
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Sessions.html">
+                    Sessions
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Mock-(charging-sessions).html">
+                    Mock (charging sessions)
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Pricing-Engine.html">
+                    Pricing Engine
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Vehicles.html">
+                    Vehicles API
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/RFID-Cards.html">
+                    RFID Cards
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Pricing-Engine.html">
+                    Pricing Engine
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Overall-Architecture.html">
+                    Overall Architecture
+                </a>
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Overall-Architecture/Configuration-Conventions.html">
+                    Configuration Conventions
+                </a>
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Overall-Architecture.html">
+                    Overall Architecture
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Card-Pricing.html">
+                    Card Pricing
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Getting-started.html">
+                    Getting started
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Mock-(charging-sessions).html">
+                    Mock (charging sessions)
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Users.html">
+                    Users
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/References.html">
+                    References
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Services.html">
+                    Services
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Retype
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                References
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                overall architecture
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                configuration conventions
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+        <li>
+            
+                Resources
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                Css
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Js
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Fonts
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+        <li>
+            
+                card pricing
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                pricing engine
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Sessions
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                getting started
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                rfid cards
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Users
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Vehicles
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                mock (charging sessions)
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Services
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Sessions.html">
+                    Sessions
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Attachments
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Idea
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                Idea hello wiki dir
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                Idea
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+</ul>
+
+    </menu>
+    <article class="markdown-body">
+        <p><strong>Hello Be:Mo</strong> is a user-centric MSP (Mobility Services Provider) that allows developpers to build Mobile, InCar or WebApp custom applications.
+A series of APIs are available to enable the developpers to control  all the stages of their final User experience.</p>
+<p>This <em><strong>'Getting started'</strong></em> section aims to provide insights into the key features enabled by Hello Be:Mo API Platform and how to put them into action.</p>
+<p>The  section is divided into the followng subsections :</p>
+<ol>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki#prerequisite-1---authentication">Prerequisite 1 - Authentication</a></li>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki#prerequisite-2---create-a-user">Prerequisite 2 - Create a User</a></li>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki#journey---detection-&amp;-information">Journey - Detection &amp; Information</a></li>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki#digital-charging-process---insight">Digital charging process - Insight</a></li>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki#quick-start---digital-charging-session">Quick start - Digital charging session</a></li>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki#rfid-charging-process---insight">RFID charging process - Insight</a></li>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki#quick-start---provide-rfid-cards-to-your-final-users">Quick start - Provide RFID cards to your final users</a></li>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki#quick-start---mock-rfid-session">Quick start - Mock RFID session</a></li>
+</ol>
+<h1 id="prerequisite-1-authentication">Prerequisite 1 - Authentication</h1>
+<div class="doc"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus nisi, posuere eget porttitor et, varius ut nunc. Quisque ultrices iaculis mollis. Aenean dapibus sem a leo pellentesque, non ullamcorper nulla iaculis. Donec at commodo dui. Nam efficitur nulla nunc, sed egestas orci fringilla eget. Vestibulum finibus consequat erat. Sed id vestibulum ligula. Nam et nibh fermentum nisi tincidunt rhoncus eu sed erat. Cras a tellus egestas, iaculis lorem ut, gravida lorem. Duis non sagittis nisl.</p>
+<p>Curabitur et elit nec augue consequat ornare non nec nulla. Praesent ultrices leo a nunc placerat, vel mattis lacus mattis. Etiam congue blandit libero, sed convallis justo consectetur eget. Maecenas vitae orci justo. Nunc ac lorem id ligula euismod mollis quis in felis. Nulla facilisi. Ut quis mauris in velit volutpat tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+<div class="mermaid">sequenceDiagram
+    Partner->>Hello API Platform:Get a token
+    Hello API Platform-->>Partner: Partner token
+</div>
+</div>
+<div class="example">
+<rapi-doc-mini spec-url="https://dev.hello.be-mo.io/swagger/v1/swagger.json" match-paths="partners/token" paths-expanded="true" match-type="regex" theme="light" layout="column" schema-style="table" ></rapi-doc-mini></div>
+<h4 id="required-parameters">Required Parameters</h4>
+<blockquote>
+<p><code>clientId</code>
+<em>provided during the onboarding process</em></p>
+</blockquote>
+<blockquote>
+<p><code>clientSecret</code>
+<em>provided during the onboarding process</em></p>
+</blockquote>
+<h4 id="important-output">Important output</h4>
+<blockquote>
+<p><code>partner Token</code> is required to access managment level APIs.
+<em>It was created with your personal Client Id and Client Secret by calling our Identity provider.
+Partner token creation and lifetime follow Oauth2 Client Credentials grant standard (<a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://tools.ietf.org/html/rfc6749#section-1.3.4">https://tools.ietf.org/html/rfc6749#section-1.3.4</a>)</em></p>
+</blockquote>
+<h1 id="prerequisite-2-create-a-user">Prerequisite 2 - Create a User</h1>
+<hr />
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-0fbf5901-d628-4bc3-bc98-72957aa11bc7.png" alt="image.png" /></p>
+<table>
+<thead>
+<tr>
+<th><strong>Operation</strong></th>
+<th style="text-align: center;"><strong>HTTP Method</strong></th>
+<th><strong>Endpoint name</strong></th>
+<th style="text-align: center;"><strong>Authentication</strong></th>
+<th style="text-align: center;"><strong>Parameters</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create</td>
+<td style="text-align: center;"><font color='green'><strong>POST</strong> </font></td>
+<td>Create User</td>
+<td style="text-align: center;"><code>partner Token</code></td>
+<td style="text-align: center;"><em>cf. below</em></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary> <font color='black'> API - 'Create a user' in detail </font></summary> 
+<h3 id="create-a-user">create a user</h3>
+<p>This reference describes how to create a new user through the REST API.
+<em>At a minimum, you must specify the required properties for the user.</em>
+<em>You can optionally specify any other writable properties (optional parameters).</em></p>
+<h4 id="required-parameters-1">Required parameters</h4>
+<blockquote>
+<p><code>civility</code> : The contact's civility (<strong>&quot;Ms&quot;</strong> for a lady or <strong>&quot;Mr&quot;</strong> for a gentleman)</p>
+</blockquote>
+<blockquote>
+<p><code>firstname</code> : The contact's first name</p>
+</blockquote>
+<blockquote>
+<p><code>lastname</code> : The contact's last name</p>
+</blockquote>
+<details>
+  <summary> <font color='blue'> Optional parameters </font></summary> 
+<blockquote>
+<p><code>email</code> : The contact's email address.
+<font color='red'>Limitation : Be:Mo doesn't realize unicity checks on email entries.</font></p>
+</blockquote>
+<blockquote>
+<p><code>billingAddress</code> refers to the place to which the invoice is sent. It is also specified on the invoice.<br />
+<font color='red'>Limitation : To set up a billing address, you must provide , at a minimum, values to <code>line1</code>, <code>city</code>, <code>zipCode</code> and <code>country</code> fields.</font></p>
+<ul>
+<li><code>line1</code> : <em>The first line of the contact's address, which is often a street address or business name.</em></li>
+<li><code>line2</code> : <em>The second line of the contact's address.</em></li>
+<li><code>line3</code> : <em>The third line of the contact's address.</em></li>
+<li><code>line4</code> : <em>The fourth line of the contact's address.</em></li>
+<li><code>city</code>  : <em>The city of the contact's address.</em></li>
+<li><code>localityRegionState</code> : <em>The locality, region or state of the contact's address.</em></li>
+<li><code>zipCode</code> : <em>The zipcode of the contact's address.</em></li>
+<li><code>country</code> : <em>The country of the contact's address.</em></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>shippingAddress</code> refers to the place to which the RFID card should be delivered.
+<font color='red'>Limitation : To set up a shipping address, you must provide , at a minimum, values to <code>line1</code>, <code>city</code>, <code>zipCode</code> and <code>country</code> fields.</font></p>
+<ul>
+<li><code>line1</code> : <em>The first line of the contact's address, which is often a street address or business name.</em></li>
+<li><code>line2</code> : <em>The second line of the contact's address.</em></li>
+<li><code>line3</code> : <em>The third line of the contact's address.</em></li>
+<li><code>line4</code> : <em>The fourth line of the contact's address.</em></li>
+<li><code>city</code>  : <em>The city of the contact's address.</em></li>
+<li><code>localityRegionState</code> : <em>The locality, region or state of the contact's address.</em></li>
+<li><code>zipCode</code> : <em>The zipcode of the contact's address.</em></li>
+<li><code>country</code> : <em>The country of the contact's address.</em></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>postalAddress</code> refers to the place to which the communication letters (excepted RFID card and invoices) should be sent.
+<font color='red'>Limitation : To set up a postal address, you must provide , at a minimum, values to <code>line1</code>, <code>city</code>, <code>zipCode</code> and <code>country</code> fields.</font></p>
+<ul>
+<li><code>line1</code> : <em>The first line of the contact's address, which is often a street address or business name.</em></li>
+<li><code>line2</code> : <em>The second line of the contact's address.</em></li>
+<li><code>line3</code> : <em>The third line of the contact's address.</em></li>
+<li><code>line4</code> : <em>The fourth line of the contact's address.</em></li>
+<li><code>city</code>  : <em>The city of the contact's address.</em></li>
+<li><code>localityRegionState</code> : <em>The locality, region or state of the contact's address.</em></li>
+<li><code>zipCode</code> : <em>The zipcode of the contact's address.</em></li>
+<li><code>country</code> : <em>The country of the contact's address.</em></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>consentDate</code> : The date of expression of consent. It often refers to the date at which the user has agreed to the Terms &amp; Conditions.</p>
+</blockquote>
+<blockquote>
+<p><code>externalId</code> : You can set up an externalId, which is often the userId in your own system.
+Once this value registered, you can retrieve the users created by using the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://uat.hello.be-mo.io/#get-/api/v1/users">GetUser (by externalId)</a>
+<font color='red'>Limitation : Be:Mo doesn't realize unicity checks on externalId entries.</font></p>
+</blockquote>
+<blockquote>
+<p><code>externalDatas</code> : You can freely setup and store a collection of externalDatas, meaningful in your business context.
+<font color='red'>Limitation : Be:Mo doesn't use those datas in its processes.</font></p>
+</blockquote>
+</details>
+<h4 id="important-outputs">Important outputs</h4>
+<blockquote>
+<p><code>userId</code> : identifier of user in Be:Mo's database.</p>
+</blockquote>
+<blockquote>
+<p><code>isActive</code> : activation status of user. <strong>True</strong> (default state) if user is active, <strong>false</strong> if not.</p>
+</blockquote>
+</details>
+<h1 id="journey-detection-information">Journey - Detection &amp; Information</h1>
+<hr />
+<h2 id="prerequisites">Prerequisites</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Prerequisite number</th>
+<th style="text-align: left;"><strong>Related endpoint</strong></th>
+<th style="text-align: center;">Useful field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><em><strong>Get a  token</strong></em></td>
+<td style="text-align: center;"><code>partner token</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><em><strong>Create a User</strong></em></td>
+<td style="text-align: center;"><code>userId</code>, <code>isActive = True</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="orchestration">Orchestration</h2>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-469c5a69-1ba5-4e22-ab5d-d130a438aced.png" alt="image.png" /></p>
+<h2 id="detection-find-a-place">Detection (Find a place)</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Operation</strong></th>
+<th style="text-align: center;"><strong>HTTP Method</strong></th>
+<th><strong>Endpoint name</strong></th>
+<th style="text-align: center;"><strong>Authentication</strong></th>
+<th style="text-align: center;"><strong>Condition (on User activation state)</strong></th>
+<th style="text-align: center;"><strong>Parameters</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td style="text-align: center;"><font color='deepskyblue'><strong>GET</strong> </font></td>
+<td>Get clustered places around a given position</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><em>cf. below</em></td>
+</tr>
+<tr>
+<td>Read</td>
+<td style="text-align: center;"><font color='deepskyblue'><strong>GET</strong> </font></td>
+<td>Get places around a given position</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><em>cf. below</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples-of-detection-endpoints-implementation">Examples of Detection endpoints implementation</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><strong>'Native' Clustered view</strong></th>
+<th style="text-align: center;"><strong>'Native' Single places view</strong></th>
+<th style="text-align: center;"><strong>Single point main infos</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Mobile app page example</td>
+<td style="text-align: center;"><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/1%20-%20Clustered%20view-14d53f00-5387-44e6-ac07-7c5273c89722.jpeg" alt="1 - Clustered view.jpeg" /></td>
+<td style="text-align: center;"><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/2%20-Single%20place%20view-c02b0dfd-2280-45ac-8459-898996ce91c9.jpeg" alt="2 -Single place view.jpeg" /></td>
+<td style="text-align: center;"><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/3%20-%20General%20infos-57d3a529-9065-49bb-b483-4054df8e3473.jpeg" alt="3 - General infos.jpeg" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">Enabled by '<strong><em>Get clustered places around [...]</em></strong>'</td>
+<td style="text-align: center;"><font color='green'><strong>YES</strong>, depending on zoom level &amp; density of places</td>
+<td style="text-align: center;"><font color='green'><strong>YES</strong>, depending on zoom level &amp; density of places</td>
+<td style="text-align: center;"><font color='green'><strong>YES</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Enabled by '<strong><em>Get places around [...]</em></strong>'</td>
+<td style="text-align: center;"><font color='red'><strong>NO</strong></td>
+<td style="text-align: center;"><font color='green'><strong>YES</strong></td>
+<td style="text-align: center;"><font color='green'><strong>YES</strong></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary> <font color='black'> API - 'Get clustered places around a given position' in detail </font></summary> 
+<h3 id="get-clustered-places-around-a-given-position">Get clustered places around a given position</h3>
+<hr />
+<p>Retrieves the nearest POI around a given location, grouped into clusters, according to given criterias (search radius, desired product, distribution network...).
+Depending on the zoom level (from 1 to 12), this endpoint enables to visualize on a map a reduced number of clusters instead of tens, hundreds or thousands single points.</p>
+<h4 id="required-parameters-2">Required parameters</h4>
+<blockquote>
+<p><code>userId</code> : user's identifier in Be:Mo's data base.
+<em>contained in the callout of the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-/api/v1/users">create User (Prerequisite #2)</a></em></p>
+</blockquote>
+<details>
+  <summary> <font color='blue'> Optional parameters </font></summary> 
+<blockquote>
+<p><code>zoom</code> : zoom level value (from 1 to 12).
+<em>If no value is entered, zoom = 1 (the wider zoom range) is set by default.</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Length</strong></th>
+<th style="text-align: right;"><strong>Cell width</strong></th>
+<th style="text-align: right;"><strong>Cell height</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: right;">≤ 5 000 km</td>
+<td style="text-align: right;">5 000 km</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: right;">≤ 1 250 km</td>
+<td style="text-align: right;">625 km</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">≤ 156 km</td>
+<td style="text-align: right;">156 km</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: right;">≤ 39.1 km</td>
+<td style="text-align: right;">19.5 km</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: right;">≤ 4.89 km</td>
+<td style="text-align: right;">4.89 km</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: right;">≤ 1.22 km</td>
+<td style="text-align: right;">0.61 km</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: right;">≤ 153 m</td>
+<td style="text-align: right;">153 m</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: right;">≤ 38.2 m</td>
+<td style="text-align: right;">19.1 m</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: right;">≤ 4.77 m</td>
+<td style="text-align: right;">4.77 m</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: right;">≤ 1.19 m</td>
+<td style="text-align: right;">0.596 m</td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td style="text-align: right;">≤ 14.9 cm</td>
+<td style="text-align: right;">14.9 cm</td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td style="text-align: right;">≤ 3.7 cm</td>
+<td style="text-align: right;">1.86 cm</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>vehicleId</code> (optional): vehicle's identifier in Be:Mo's data base.
+<em>contained in the callout of the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-/api/v1/users/-userId-/vehicles">Create a vehicle </a></em></p>
+</blockquote>
+<blockquote>
+<p><code>Longitude</code> : longitude coordinate of User location
+<em>(current position of the User device or entered manually)</em></p>
+</blockquote>
+<blockquote>
+<p><code>Latitude</code> : latitude coordinate of User location
+<em>(current position of the User device or entered manually)</em></p>
+</blockquote>
+<blockquote>
+<p><code>productCodes</code> : Be:Mo uses codes to distinguish the different products types from each other.
+It can refer to  :</p>
+<ul>
+<li>for ICE and PHEV, the fuel types.
+<em>Example : <strong>E85</strong> for  Ethanol, <strong>B7</strong> for Diesel etc.</em></li>
+<li>for PEV and PHEV, the attributes of the energy supply (range of power delivered, speed of charge).
+<em>Example :  <strong>E_Standard</strong> for a Slow charging (&gt; 5h), <strong>E_ultraFast</strong> for an Ultra fast charging (&lt; 30 min) etc.</em>
+The complete list of <strong>productCodes</strong> can be retrieved through the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/products">Get Products List</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>connectorCodes</code> : Be:Mo uses codes to distinguish the different charging connectors (plug and socket) from each other.
+The complete list of <strong>connectorCodes</strong> can be retrieved through the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/connectors">Get Connectors List</a>
+<font color='red'>Limitation : This field only makes sense for Electric (PEV) and Plug-in hybrid vehicles (PHEV) .</font></p>
+</blockquote>
+<blockquote>
+<p><code>Distance</code> : search radius in kilometers (km)</p>
+</blockquote>
+<blockquote>
+<p><code>PlaceNetworkCode</code> : network/brand of POI
+<em>Example : Aral , BP, Eni or Shell for fuel service stations.</em></p>
+</blockquote>
+<blockquote>
+<p><code>AvailableProduct</code> : <strong>True</strong> to filter the results and return only available products per place.</p>
+</blockquote>
+<blockquote>
+<p><code>DigitalJourney</code> : <strong>True</strong> to filter the results and return the places enabling digital journey (through a third-party application).</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='red'> Important outputs </font></summary> 
+<blockquote>
+<p><code>mode</code> : indicates if the payload section is related to a single places visualization (mode = <strong>place</strong>) or a clustered one (mode = <strong>cluster</strong>)</p>
+</blockquote>
+<blockquote>
+<p>When <code>mode = cluster</code> :</p>
+<blockquote>
+<p><code>latitude</code> &amp; <code>latitude</code> : GPS coordinates of the barycenter of all places grouped into the cluster</p>
+</blockquote>
+<blockquote>
+<p><code>count</code> : number of places/stations grouped into the cluster.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>When <code>mode = places</code> :</p>
+<blockquote>
+<p><code>placeId</code> : identifier of the place in the POI's database.</p>
+</blockquote>
+<blockquote>
+<p><code>latitude</code> &amp; <code>latitude</code> : GPS coordinates of the place</p>
+</blockquote>
+<blockquote>
+<p><code>attributes</code> : list of capabilities &amp; connectors provided by the place.</p>
+</blockquote>
+<blockquote>
+<p>list of <code>productId</code>delivered by the place</p>
+</blockquote>
+<blockquote>
+<p>other general information (station name, address, radial distance from entered location to place...)</p>
+</blockquote>
+</blockquote>
+<details>
+  <summary> <font color='blue'> More details on 'attributes' output </font></summary>
+<table>
+<thead>
+<tr>
+<th><strong>Attribute label</strong></th>
+<th style="text-align: center;"><strong>Type</strong></th>
+<th><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>capability.charging_profile_capable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>The CPO is able to provide real time updates of the charging session and charging profile</td>
+</tr>
+<tr>
+<td><strong>capability.credit_card_payable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>Charging at this EVSE can be payed with credit card.</td>
+</tr>
+<tr>
+<td><strong>capability.remote_start_stop_capable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>The station is equipped with terminals allowing digital charging (the session can be triggered remotely by a Mobile/In-car app )</td>
+</tr>
+<tr>
+<td><strong>capability.reservable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>The CPO enables its users to reserve a charging point X minutes before their arrival at the station.</td>
+</tr>
+<tr>
+<td><strong>capability.rfid_reader</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>The station is equipped with RFID card reader devices</td>
+</tr>
+<tr>
+<td><strong>capability.unlock_capable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>Connectors have mechanical lock that can be requested to be unlocked.</td>
+</tr>
+<tr>
+<td><strong>connector.XXXXXXXX</strong></td>
+<td style="text-align: center;"><font color='blue'><strong>Connector</strong></font></td>
+<td>The station is equipped with the mentioned type of connector. <em>Example : <strong>connector.domestic_e_socket</strong> if at least, one of the charging terminal is equipped with the domestic E socket</em></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h4 id="ps-useful-references-endpoints-to-find-more-details-on-connectors-products">PS : Useful references endpoints to find more details on connectors &amp; products :</h4>
+<ol>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/products">Get product list</a></li>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/connectors">Get connector list</a> <em>(for Electric &amp; Plug-in Hybrid vehicles)</em></li>
+</ol>
+</details>
+</details>
+<details>
+  <summary> <font color='black'> API - 'Get  places around a given position' in detail </font></summary> 
+<h3 id="get-places-around-a-given-position">Get places around a given position</h3>
+<hr />
+<p>Retrieves the nearest POI around a given location according to given criterias (search radius, desired product, distribution network...)</p>
+<h4 id="required-parameters-3">Required parameters</h4>
+<blockquote>
+<p><code>userId</code> : user's identifier in Be:Mo's data base.
+<em>contained in the callout of the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-/api/v1/users">Create a User (Prerequisite #2)</a></em></p>
+</blockquote>
+<details>
+  <summary> <font color='blue'> Optional parameters </font></summary> 
+<blockquote>
+<p><code>vehicleId</code> (optional): vehicle's identifier in Be:Mo's data base.
+<em>contained in the callout of the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-/api/v1/users/-userId-/vehicles">Create a vehicle </a></em></p>
+</blockquote>
+<blockquote>
+<p><code>Longitude</code> : longitude coordinate of User location
+<em>(current position of the User device or entered manually)</em></p>
+</blockquote>
+<blockquote>
+<p><code>Latitude</code> : latitude coordinate of User location
+<em>(current position of the User device or entered manually)</em></p>
+</blockquote>
+<blockquote>
+<p><code>productCodes</code> : Be:Mo uses codes to distinguish the different products types from each other.
+It can refer to  :</p>
+<ul>
+<li>for ICE and PHEV, the fuel types.
+<em>Example : <strong>E85</strong> for  Ethanol, <strong>B7</strong> for Diesel etc.</em></li>
+<li>for PEV and PHEV, the attributes of the energy supply (range of power delivered, speed of charge).
+<em>Example :  <strong>E_Standard</strong> for a Slow charging (&gt; 5h), <strong>E_ultraFast</strong> for an Ultra fast charging (&lt; 30 min) etc.</em>
+The complete list of <strong>productCodes</strong> can be retrieved through the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/products">Get Products List</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>connectorCodes</code> : Be:Mo uses codes to distinguish the different charging connectors (plug and socket) from each other.
+The complete list of <strong>connectorCodes</strong> can be retrieved through the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/connectors">Get Connectors List</a>
+<font color='red'>Limitation : This field only makes sense for Electric (PEV) and Plug-in hybrid vehicles (PHEV) .</font></p>
+</blockquote>
+<blockquote>
+<p><code>Distance</code> : search radius in kilometers (km)</p>
+</blockquote>
+<blockquote>
+<p><code>PlaceNetworkCode</code> : network/brand of POI
+<em>Example : Aral , BP, Eni or Shell for fuel service stations.</em></p>
+</blockquote>
+<blockquote>
+<p><code>AvailableProduct</code> : <strong>True</strong> to filter the results and return only available products per place.</p>
+</blockquote>
+<blockquote>
+<p><code>DigitalJourney</code> : <strong>True</strong> to filter the results and return the places enabling digital journey (through a third-party application).</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='red'> Important outputs </font></summary> 
+<blockquote>
+<p><code>placeId</code> : identifier of the place in the POI's database.</p>
+</blockquote>
+<blockquote>
+<p><code>latitude</code> &amp; <code>latitude</code> : GPS coordinates of the place</p>
+</blockquote>
+<blockquote>
+<p><code>attributes</code> : list of capabilities &amp; connectors provided by the place.</p>
+</blockquote>
+<blockquote>
+<p>list of <code>productId</code>delivered by the place</p>
+</blockquote>
+<blockquote>
+<p>other general information (place name, address, radial distance from entered location to place...)</p>
+</blockquote>
+<details>
+  <summary> <font color='blue'> More details on 'attributes' output </font></summary>
+<table>
+<thead>
+<tr>
+<th><strong>Attribute label</strong></th>
+<th style="text-align: center;"><strong>Type</strong></th>
+<th><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>capability.charging_profile_capable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>The CPO is able to provide real time updates of the charging session and charging profile</td>
+</tr>
+<tr>
+<td><strong>capability.credit_card_payable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>Charging at this EVSE can be payed with credit card.</td>
+</tr>
+<tr>
+<td><strong>capability.remote_start_stop_capable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>The station is equipped with terminals allowing digital charging (the session can be triggered remotely by a Mobile/In-car app )</td>
+</tr>
+<tr>
+<td><strong>capability.reservable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>The CPO enables its users to reserve a charging point X minutes before their arrival at the station.</td>
+</tr>
+<tr>
+<td><strong>capability.rfid_reader</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>The station is equipped with RFID card reader devices</td>
+</tr>
+<tr>
+<td><strong>capability.unlock_capable</strong></td>
+<td style="text-align: center;"><font color='green'><strong>Capability</strong></font></td>
+<td>Connectors have mechanical lock that can be requested to be unlocked.</td>
+</tr>
+<tr>
+<td><strong>connector.XXXXXXXX</strong></td>
+<td style="text-align: center;"><font color='blue'><strong>Connector</strong></font></td>
+<td>The station is equipped with the mentioned type of connector. <em>Example : <strong>connector.domestic_e_socket</strong> if at least, one of the charging terminal is equipped with the domestic E socket</em></td>
+</tr>
+</tbody>
+</table>
+</details>
+</details>
+<h4 id="ps-useful-references-endpoints-to-find-more-details-on-connectors-products-1">PS : Useful references endpoints to find more details on connectors &amp; products :</h4>
+<ol>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/products">Get product list</a></li>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/connectors">Get connector list</a> <em>(for Electric &amp; Plug-in Hybrid vehicles)</em></li>
+</ol>
+</details>
+<h2 id="information-retrieve-place-details">Information (Retrieve place details)</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Operation</strong></th>
+<th style="text-align: center;"><strong>HTTP Method</strong></th>
+<th><strong>Endpoint name</strong></th>
+<th style="text-align: center;"><strong>Authentication</strong></th>
+<th style="text-align: center;"><strong>Condition (on User activation state)</strong></th>
+<th style="text-align: center;"><strong>Parameters</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td style="text-align: center;"><font color='deepskyblue'><strong>GET</strong> </font></td>
+<td>Get place details</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><code>placeId</code>+ <em>others detailed  below</em></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary> <font color='black'> API - 'Get place details' in detail </font></summary> 
+<h3 id="get-place-details">Get place details</h3>
+<hr />
+<h4 id="required-parameters-4">Required parameters</h4>
+<blockquote>
+<p><code>userId</code> : user's identifier in Be:Mo's data base.
+<em>contained in the callout of the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-/api/v1/users">create User (Prerequisite #2)</a></em></p>
+</blockquote>
+<blockquote>
+<p><code>placeId</code> : place's identifier in Be:Mo's data base.
+<em>contained in the callout of the endpoints <strong>Get clustered places around [...]</strong> or <strong>Get places around [...]</strong></em></p>
+</blockquote>
+<details>
+  <summary> <font color='blue'> Optional parameters </font></summary> 
+<blockquote>
+<p><code>vehicleId</code> (optional): vehicle's identifier in Be:Mo's data base.
+<em>contained in the callout of the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-/api/v1/users/-userId-/vehicles">Create a vehicle </a></em></p>
+</blockquote>
+<blockquote>
+<p><code>productCodes</code> : Be:Mo uses codes to distinguish the different products types from each other.
+It can refer to  :</p>
+<ul>
+<li>for ICE and PHEV, the fuel types.
+<em>Example : <strong>E85</strong> for  Ethanol, <strong>B7</strong> for Diesel etc.</em></li>
+<li>for PEV and PHEV, the attributes of the energy supply (range of power delivered, speed of charge).
+<em>Example :  <strong>E_Standard</strong> for a Slow charging (&gt; 5h), <strong>E_ultraFast</strong> for an Ultra fast charging (&lt; 30 min) etc.</em>
+The complete list of <strong>productCodes</strong> can be retrieved through the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/products">Get Products List</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>connectorCodes</code> : Be:Mo uses codes to distinguish the different charging connectors (plug and socket) from each other.
+The complete list of <strong>connectorCodes</strong> can be retrieved through the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#get-/api/v1/References/connectors">Get Connectors List</a>
+<font color='red'>Limitation : This field only makes sense for Electric (PEV) and Plug-in hybrid vehicles (PHEV) .</font></p>
+</blockquote>
+<blockquote>
+<p><code>AvailableProduct</code> : <strong>True</strong> to filter the results and return only available products per place.</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='red'> Important outputs (coming soon)</font></summary>
+</details> 
+</details>
+<h1 id="digital-charging-process-insight">Digital charging process - Insight</h1>
+<h2 id="digital-charging-process-in-real-life">Digital Charging process in real-life</h2>
+<hr />
+<h3 id="limitations">Limitations</h3>
+<blockquote>
+<ol>
+<li>The digital (or remote) session <strong>IS ONLY available  in a MINORITY of places</strong>. The places enabling this feature are recognisable by the tag <code>capability.remote_start_stop_capable</code> in the response payloads of Detection (Get clustered places around [...}, Get places around [...]) and Information (Get place details) endpoints.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>Be:Mo can only forward session (and session states) updates, through event messages, if <strong>we receive them first</strong> from the CPO. <strong>The entire sequence of final user notification depends on the reliability of the CPO.</strong></li>
+</ol>
+</blockquote>
+<h3 id="process">Process</h3>
+<blockquote>
+<p><strong>START A DIGITAL SESSION</strong></p>
+</blockquote>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-ff13ede5-4e02-4d51-974d-248ba3fb1b3c.png" alt="image.png" /></p>
+<details>
+  <summary> <font color='red'> Process steps in detail </font></summary> 
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Step number</strong></th>
+<th style="text-align: center;"><em>Triggered by... (<strong>Sender</strong></em>)</th>
+<th style="text-align: center;"><em>For ... (<strong>Recipient</strong>)</em></th>
+<th style="text-align: left;"><em>In order to... (<strong><em>Action</em></strong>)</em></th>
+<th style="text-align: center;"><em>Through...</em> (<strong><em>Medium</em></strong>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Trigger a session start</em></td>
+<td style="text-align: center;">User device</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Start a Digital (or Remote) session</em></td>
+<td style="text-align: center;">API call</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: left;"><em>Forward session start order</em></td>
+<td style="text-align: center;">API call</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Aknowledge ‘session start’ order &amp; create session context (sessionId, state = 'pending') while waiting for user action</em></td>
+<td style="text-align: center;">API (callback of 3)</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Forward ‘Success’ of CPO acknowledgment in synchronous mode</em></td>
+<td style="text-align: center;">API (callback of 2)</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: left;"><em>Notify the final user</em></td>
+<td style="text-align: center;">User device</td>
+</tr>
+<tr>
+<td style="text-align: center;">6bis</td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: left;"><em>Notify the final user with a visual signal on the EVSE &amp; unlock the connector</em></td>
+<td style="text-align: center;">EVSE (physical equipment)</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: left;"><em>Plug his/her car &amp; ensure that the charging session is in progress</em></td>
+<td style="text-align: center;">EVSE (physical equipment)</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Update session state (from ‘pending’ to ‘active’)</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Forward session update (from ‘pending’ to ‘active’) via the event SessionActive</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: left;"><em>Notify the final user</em></td>
+<td style="text-align: center;">User device</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="section"></h3>
+<blockquote>
+<p><strong>STOP A DIGITAL SESSION</strong></p>
+</blockquote>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-dcaea0e4-8f0e-4246-9b81-887e5e5dca69.png" alt="image.png" /></p>
+<h1 id="quick-start-digital-charging-session">Quick start - Digital charging session</h1>
+<hr />
+<h2 id="in-real-life">In real-life</h2>
+<h3 id="prerequisites-1">Prerequisites</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Prerequisite number</th>
+<th style="text-align: left;"><strong>Related endpoint</strong></th>
+<th style="text-align: center;">Useful field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><em><strong>Get a  token</strong></em></td>
+<td style="text-align: center;"><code>partner token</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><em><strong>Create a User</strong></em></td>
+<td style="text-align: center;"><code>userId</code>, <code>isActive = True</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><em><strong>Get clustered places around [...]</strong> or <strong>Get places around [...]</strong></em></td>
+<td style="text-align: center;"><code>placeId</code> (for prerequisite 4)</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><em><strong>Get places details</strong></em></td>
+<td style="text-align: center;"><code>serviceId</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="orchestration-1">Orchestration</h3>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-eed1c885-6861-4d1a-984d-2ab7b200800a.png" alt="image.png" /></p>
+<table>
+<thead>
+<tr>
+<th><strong>Operation</strong></th>
+<th style="text-align: center;"><strong>HTTP Method</strong></th>
+<th><strong>Endpoint name</strong></th>
+<th style="text-align: center;"><strong>Authentication</strong></th>
+<th style="text-align: center;"><strong>Condition (on User activation state)</strong></th>
+<th style="text-align: center;"><strong>Specific prerequisites</strong></th>
+<th style="text-align: center;"><strong>Parameters</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start</td>
+<td style="text-align: center;"><font color='green'><strong>POST</strong> </font></td>
+<td>Start a session</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;"><code>userId</code>,<code>latitude</code>, <code>longitude</code>,<code>serviceId</code></td>
+</tr>
+<tr>
+<td>Stop</td>
+<td style="text-align: center;"><font color='green'><strong>POST</strong> </font></td>
+<td>Stop a session</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;">Successful request to <strong><em>API - 'Start a session'</em></strong> + <code>session state</code> = <code>new</code>, <code>pending</code>or <code>active</code></td>
+<td style="text-align: center;"><code>userId</code>,<code>sessionId</code></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary> <font color='black'> Required parameters definition </font></summary>
+<blockquote>
+<p><code>userId</code> : user's identifier in Be:Mo's database.</p>
+</blockquote>
+<blockquote>
+<p><code>longitude</code> : longitude coordinate of the Point Of Interest (POI) location.</p>
+</blockquote>
+<blockquote>
+<p><code>latitude</code> : latitude coordinate of the Point Of Interest (POI) location.</p>
+</blockquote>
+<blockquote>
+<p><code>serviceId</code> : service's identifier in Be:Mo's database.</p>
+</blockquote>
+<blockquote>
+<p><code>sessionId</code> : session identifier in Be:Mo's database.
+<em>Output of '<strong>Start a session</strong>' endpoint</em></p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='red'> Important outputs </font></summary>
+<blockquote>
+<p><code>sessionId</code> : The session identifier in Be:Mo's database</p>
+</blockquote>
+<blockquote>
+<p><code>status</code> : The session status.</p>
+</blockquote>
+<blockquote>
+<p><code>isRfid</code> : indicates if the session has been or not initiated by a RFID card.</p>
+<ul>
+<li><strong><em>'False'</em></strong> for a digital session (initiated by the endpoint <em><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-/api/v1/users/-userId-/sessions/start">Start a session</a></em>).</li>
+<li><strong>'<em>True</em>'</strong> for a RFID-triggered session (or a mocked RFID session in Testing environments cf. <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-/api/v1/mock/rfidsession/start">Start mocked charging session with given card</a>)</li>
+</ul>
+</blockquote>
+</details>
+<h2 id="mock-digital-remote-session">Mock Digital (Remote) session</h2>
+<hr />
+<p>The orchestration &amp; API calls sequences are exactly identical in mocked environment (<strong>Sanbdox</strong>, <strong>PreProd</strong>) and <strong>Production</strong>.
+Only the nature of the data returned by the payloads differs :</p>
+<ul>
+<li>real-time &amp; real-life data in production</li>
+<li>mocked data in Testing environments.</li>
+</ul>
+<h1 id="rfid-charging-process-insight">RFID charging process - Insight</h1>
+<h2 id="rfid-charging-process-in-real-life">RFID Charging process in real-life</h2>
+<hr />
+<h3 id="limitations-1">Limitations</h3>
+<blockquote>
+<ol>
+<li>The RFID session process is entirely triggered and controlled by the CPO. Be:Mo is only notified afterwards by event messages.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>Be:Mo can only forward session (and session states) updates, through event messages, if <strong>we receive them first</strong> from the CPO.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><strong>Even more than Digital session process, the RFID journey is entirely dependent on the reliability of the CPO.</strong></li>
+</ol>
+</blockquote>
+<h3 id="process-1">Process</h3>
+<blockquote>
+<p><strong>START A RFID SESSION</strong></p>
+</blockquote>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-7f32ff16-d51b-42e4-9613-ad8bc87c7475.png" alt="image.png" /></p>
+<details>
+  <summary> <font color='red'> Process steps in detail </font></summary> 
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Step number</strong></th>
+<th style="text-align: center;"><em>Triggered by... (<strong>Sender</strong></em>)</th>
+<th style="text-align: center;"><em>For ... (<strong>Recipient</strong>)</em></th>
+<th style="text-align: left;"><em>In order to... (<strong><em>Action</em></strong>)</em></th>
+<th style="text-align: center;"><em>Through...</em> (<strong><em>Medium</em></strong>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: left;"><em>Trigger the session directly by using his/her RFID on an EVSE equipped with RFID reader</em></td>
+<td style="text-align: center;">RFID card + EVSE (physical equipment)</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: left;"><em>Notify the final user with a visual signal on the EVSE &amp; unlock the connector</em></td>
+<td style="text-align: center;">EVSE (physical equipment)</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: left;"><em>Plug his/her car &amp; ensure that the charging session is in progress</em></td>
+<td style="text-align: center;">EVSE (physical equipment)</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Aknowledge ‘session start’ order &amp; create session context (sessionId, state = 'pending') while waiting for user action</em></td>
+<td style="text-align: center;">Event message (consequence of 2)</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Forward ‘Success’ of CPO acknowledgment in asynchronous mode via the SessionPending event (sessionId, state = ‘pending’)</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: left;"><em>Notify the final user</em></td>
+<td style="text-align: center;">User device</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;"><font color='blue'> <strong>CPO</strong> </font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Update session context (sessionId, state = 'active') once the car is successfully charging</em></td>
+<td style="text-align: center;">Event message (consequence of 3)</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Forward session update (from ‘pending’ to ‘active’) via the SessionActive event</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='green'> <strong>Final user</strong> </font></td>
+<td style="text-align: left;"><em>Notify the final user</em></td>
+<td style="text-align: center;">User device</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="section-1"></h3>
+<blockquote>
+<p><strong>STOP A RFID SESSION</strong></p>
+</blockquote>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-b23f7d3e-50ef-432f-97e9-f88af80cc774.png" alt="image.png" /></p>
+<h1 id="quick-start-provide-rfid-cards-to-your-final-users">Quick start - Provide RFID cards to your final users</h1>
+<p>The RFID ( Radio Frequency IDentification) Card, is a physical card, linked to a User account, which allows the driver to access securely the Charging network and the services it provides.
+Nearly all the Charging pools connected with Be:Mo's infrastructure have RFID card readers that enable, by touching the card on &amp; off, to :</p>
+<ul>
+<li>Recognize an active card,</li>
+<li>Authenticate the related User account</li>
+<li>Trigger &amp; complete the Charging process (from session start until transaction receipt, including payment).</li>
+</ul>
+<p>Be:Mo system enables you to implement 2 different approaches  to provide RFID cards to your final users :</p>
+<blockquote>
+<p><strong>Implementation 1 - Order a RFID Card through Hello Be:Mo system</strong>
+Be:Mo (associated with a main European secured cards manufacturer) manages the end-to-end process of card ordering.
+Through our Platform you can initiate the order (on behalf of your clients), monitor its progress (until delivery) and control the edited card lifecycle.</p>
+</blockquote>
+<blockquote>
+<p><strong>Implementation 2 - Enroll external RFID card into Hello Be:Mo system</strong>
+You already have your own RFID card sourcing process.
+Through our Platform you can enroll your card as Be:Mo material and then, control its lifecycle.</p>
+</blockquote>
+<h2 id="implementation-1-order-a-rfid-card-through-hello-bemo-system">Implementation 1 - Order a RFID Card through Hello Be:Mo system</h2>
+<hr />
+<details>
+  <summary> <font color='blue'> Workflow of card order status </font></summary> 
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-8e8999f6-b2e0-4efb-98fe-50f5bf769245.png" alt="image.png" /></p>
+</details>
+<h4 id="end-to-end-card-order-process-in-real-life">End-to-end 'Card Order' process in real-life</h4>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-385560b4-a32d-4df1-926b-751431d63c64.png" alt="image.png" /></p>
+<details>
+  <summary> <font color='red'> Process steps in detail </font></summary> 
+<blockquote>
+<p><strong>PART #1 - CARD ORDER PROCESS</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Step number</strong></th>
+<th style="text-align: center;"><em>Triggered by... (<strong>Sender</strong></em>)</th>
+<th style="text-align: center;"><em>For ... (<strong>Recipient</strong>)</em></th>
+<th style="text-align: left;"><em>In order to... (<strong><em>Action</em></strong>)</em></th>
+<th style="text-align: center;"><em>Through...</em> (<strong><em>Medium</em></strong>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Order a card for a user</em></td>
+<td style="text-align: center;">API call</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Ackowledge card order request</em></td>
+<td style="text-align: center;">API callback</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardOrderCreated</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardOrderSubmitted</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardOrderShipped</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardCreated</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>PART #2 - CARD ACTIVATION</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Step number</strong></th>
+<th style="text-align: center;"><em>Triggered by... (<strong>Sender</strong></em>)</th>
+<th style="text-align: center;"><em>For ... (<strong>Recipient</strong>)</em></th>
+<th style="text-align: left;"><em>In order to... (<strong><em>Action</em></strong>)</em></th>
+<th style="text-align: center;"><em>Through...</em> (<strong><em>Medium</em></strong>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Activate a card</em></td>
+<td style="text-align: center;">API call</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Ackowledge card activation request</em></td>
+<td style="text-align: center;">API callback</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardActivated</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardOrderCompletted</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="related-endpoints-event-messages">Related endpoints &amp; event messages</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Operation</strong></th>
+<th style="text-align: center;"><strong>HTTP Method</strong></th>
+<th><strong>Endpoint name</strong></th>
+<th style="text-align: center;"><strong>Authentication</strong></th>
+<th style="text-align: center;"><strong>Condition (on User activation state)</strong></th>
+<th style="text-align: center;"><strong>Condition (on card status)</strong></th>
+<th style="text-align: center;"><strong>Parameters</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create</td>
+<td style="text-align: center;"><font color='green'><strong>POST</strong> </font></td>
+<td>Create a card order for a user</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;"><code>cardNumber</code>,<code>offerId</code>, <code>billingAddress</code>, <code>shippingAddress</code>, <code>expireDate</code></td>
+</tr>
+<tr>
+<td>Activate</td>
+<td style="text-align: center;"><font color='orange'><strong>PATCH</strong> </font></td>
+<td>Activate a card for a user</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><code>status = notActivated</code></td>
+<td style="text-align: center;"><code>userId</code>,<code>cardIId</code>,<code>verificationCode</code></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary> <font color='black'> API - 'Create a card order for a user' in detail </font></summary> 
+<h3 id="oreate-a-card-order-for-a-user">Oreate a card order for a user</h3>
+<hr />
+<p>This reference describes how to order a new RFID Card through the REST API.
+The order triggers the request for the manufacturing of RFID card and its delivery to the User.</p>
+<h4 id="required-parameters-5">Required Parameters</h4>
+<blockquote>
+<p><code>userId</code> : The user Identifier in Be:Mo's system.</p>
+</blockquote>
+<h4 id="required-parameters-6">Required parameters</h4>
+<blockquote>
+<p><code>cardNumber</code> : this field refers to a unique identification number in your system</p>
+</blockquote>
+<blockquote>
+<p><code>offerId</code> : the pricing offer Identifier in Be:Mo's system.</p>
+</blockquote>
+<blockquote>
+<p><code>billingAddress</code> refers to the place to which the invoice is sent. It is also specified on the invoice.<br />
+<font color='red'>Limitation : To set up a billing address, you must provide , at a minimum, values to <code>line1</code>, <code>city</code>, <code>zipCode</code> and <code>country</code> fields.</font></p>
+<ul>
+<li><code>line1</code> : <em>The first line of the contact's address, which is often a street address or business name.</em></li>
+<li><code>line2</code> : <em>The second line of the contact's address.</em></li>
+<li><code>line3</code> : <em>The third line of the contact's address.</em></li>
+<li><code>line4</code> : <em>The fourth line of the contact's address.</em></li>
+<li><code>city</code>  : <em>The city of the contact's address.</em></li>
+<li><code>localityRegionState</code> : <em>The locality, region or state of the contact's address.</em></li>
+<li><code>zipCode</code> : <em>The zipcode of the contact's address.</em></li>
+<li><code>country</code> : <em>The country of the contact's address.</em></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>shippingAddress</code> refers to the place to which the RFID card should be delivered.
+<font color='red'>Limitation : To set up a shipping address, you must provide , at a minimum, values to <code>line1</code>, <code>city</code>, <code>zipCode</code> and <code>country</code> fields.</font></p>
+<ul>
+<li><code>line1</code> : <em>The first line of the contact's address, which is often a street address or business name.</em></li>
+<li><code>line2</code> : <em>The second line of the contact's address.</em></li>
+<li><code>line3</code> : <em>The third line of the contact's address.</em></li>
+<li><code>line4</code> : <em>The fourth line of the contact's address.</em></li>
+<li><code>city</code>  : <em>The city of the contact's address.</em></li>
+<li><code>localityRegionState</code> : <em>The locality, region or state of the contact's address.</em></li>
+<li><code>zipCode</code> : <em>The zipcode of the contact's address.</em></li>
+<li><code>country</code> : <em>The country of the contact's address.</em></li>
+</ul>
+</blockquote>
+<h4 id="optional-parameter">Optional parameter</h4>
+<blockquote>
+<p><code>expireDate</code> :
+if you want to set up a limited lifespan to your RFID card, please complete this field.
+Once the deadline has passed, the RFID card will be automatically <strong>blocked</strong> and its <code>status</code> forced to '<strong><em>expired</em></strong>'.
+<em>If not, the RFID card will have an indefinite useful life, providing there is no opposition</em> (cf. <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#patch-/api/v1/users/-userId-/cards/-cardId-/block"><em>Block a RFID card</em></a>)</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='black'> API - 'Activate a card for a user' in detail</font></summary> 
+<h3 id="activate-a-rfid-card">Activate a RFID Card</h3>
+<hr />
+<p>Enables the User to activate his/her new card.
+After the process, the card is recognized by CPO's RFID Card readers.</p>
+<h4 id="path-parameter">Path parameter</h4>
+<blockquote>
+<p><code>cardId</code> : RFID card's Identifier in Be:Mo's system.</p>
+</blockquote>
+<blockquote>
+<p><code>userId</code> : User's Identifier in Be:Mo's system.</p>
+</blockquote>
+<h4 id="required-parameter">Required parameter</h4>
+<blockquote>
+<p><code>verificationCode</code> : the 6 last digits of cardNumber</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='blue'> Partner notification - links to the documentation of related event messages</font></summary> 
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><strong>Event message</strong></th>
+<th style="text-align: left;"><em>Link to dedicated documentation</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">CardOrderCreated</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardOrderCreated"><em>WEBHOOK - Post CardOrderCreated</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardOrderSubmittted</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardOrderSubmitted"><em>WEBHOOK - Post CardOrderSubmittted</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardOrderShipped</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardOrderShipped"><em>WEBHOOK - Post CardOrderShipped</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardCreated</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardCreated"><em>WEBHOOK - Post CardCreated</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardActivated</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardActivated"><em>WEBHOOK - Post CardActivated</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardOrderCompleted</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardOrderCompleted"><em>WEBHOOK - Post CardOrderCompleted</em></a></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h4 id="mock-rfid-card-order-in-testing-environments">Mock RFID card order in Testing environments</h4>
+<blockquote>
+<p><font color='red'><strong>Limitation</strong> : This feature replaces the real (<strong>PROD</strong>) 'Card order' process  in Testing environments (<strong><em>SANDBOX</em></strong>, <strong><em>PreProd</em></strong>) only.</font></p>
+</blockquote>
+<p><em>How to reproduce above-mentioned end-to-end process with the Mock system :</em></p>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-2491e468-5712-44e3-ab07-7e151528ef0b.png" alt="image.png" /></p>
+<details>
+  <summary> <font color='red'> Process steps in detail </font></summary> 
+<blockquote>
+<p><strong>PART #1 - CREATE A (MOCKED) CARD ORDER</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Step number</strong></th>
+<th style="text-align: center;"><em>Triggered by... (<strong>Sender</strong></em>)</th>
+<th style="text-align: center;"><em>For ... (<strong>Recipient</strong>)</em></th>
+<th style="text-align: left;"><em>In order to... (<strong><em>Action</em></strong>)</em></th>
+<th style="text-align: center;"><em>Through...</em> (<strong><em>Medium</em></strong>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Order a card for a user</em></td>
+<td style="text-align: center;">API call</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Ackowledge card order successful request</em></td>
+<td style="text-align: center;">API callback</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardOrderCreated</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>PART #2 - FORCE ORDER STATUS TO GENERATE MOCKED EVENT MESSAGES</strong></p>
+<blockquote>
+<p><font color='red'><em><strong>Limitation</strong> : The change from the initial <code>orderStatus</code> to the<code>TargetStatus</code> must be allowed by the workflow of Card order status.</em></font></p>
+</blockquote>
+</blockquote>
+<details>
+  <summary> <font color='blue'> Workflow of card order status </font></summary> 
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-97a08658-23c8-40ad-8ac7-08dae3416f35.png" alt="image.png" /></p>
+</details>
+<p><em>Current example : initial <code>orderStatus = pending</code> to <code>TargetStatus = Shipped</code></em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Step number</strong></th>
+<th style="text-align: center;"><em>Triggered by... (<strong>Sender</strong></em>)</th>
+<th style="text-align: center;"><em>For ... (<strong>Recipient</strong>)</em></th>
+<th style="text-align: left;"><em>In order to... (<strong><em>Action</em></strong>)</em></th>
+<th style="text-align: center;"><em>Through...</em> (<strong><em>Medium</em></strong>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Mock card order status</em></td>
+<td style="text-align: center;">API call</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Ackowledge 'Mock card order status' successful request</em></td>
+<td style="text-align: center;">API callback</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardOrderSubmitted</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardOrderShipped</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardCreated</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>PART #3 - ACTIVATE CARD</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Step number</strong></th>
+<th style="text-align: center;"><em>Triggered by... (<strong>Sender</strong></em>)</th>
+<th style="text-align: center;"><em>For ... (<strong>Recipient</strong>)</em></th>
+<th style="text-align: left;"><em>In order to... (<strong><em>Action</em></strong>)</em></th>
+<th style="text-align: center;"><em>Through...</em> (<strong><em>Medium</em></strong>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Activate a card</em></td>
+<td style="text-align: center;">API call</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Ackowledge card activation request</em></td>
+<td style="text-align: center;">API callback</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardActivated</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardOrderCompletted</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="related-endpoints-event-messages-1">Related endpoints &amp; event messages</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Operation</strong></th>
+<th style="text-align: center;"><strong>HTTP Method</strong></th>
+<th><strong>Endpoint name</strong></th>
+<th style="text-align: center;"><strong>Authentication</strong></th>
+<th style="text-align: center;"><strong>Condition (on User activation state)</strong></th>
+<th style="text-align: center;"><strong>Condition (on 'order' status)</strong></th>
+<th style="text-align: center;"><strong>Condition (on 'card' status)</strong></th>
+<th style="text-align: center;"><strong>Parameters</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create</td>
+<td style="text-align: center;"><font color='green'><strong>POST</strong> </font></td>
+<td>Create a card order for a user</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;"><code>cardNumber</code>,<code>offerId</code>, <code>billingAddress</code>, <code>shippingAddress</code>, <code>expireDate</code></td>
+</tr>
+<tr>
+<td>Mock</td>
+<td style="text-align: center;"><font color='orange'><strong>PATCH</strong> </font></td>
+<td>Mock card order status</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;"><code>status = notActivated</code> <strong>or</strong> <code>status = submitted</code></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;"><code>orderId</code>,<code>targetStatus</code></td>
+</tr>
+<tr>
+<td>Activate</td>
+<td style="text-align: center;"><font color='orange'><strong>PATCH</strong> </font></td>
+<td>Activate a card for a user</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;"><code>status = notActivated</code></td>
+<td style="text-align: center;"><code>userId</code>,<code>cardIId</code>,<code>verificationCode</code></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary> <font color='black'> API - 'Create a card order for a user' in detail </font></summary> 
+<h3 id="oreate-a-card-order-for-a-user-1">Oreate a card order for a user</h3>
+<hr />
+<p>This reference describes how to order a new RFID Card through the REST API.
+The order triggers the request for the manufacturing of RFID card and its delivery to the User.</p>
+<h4 id="required-parameters-7">Required Parameters</h4>
+<blockquote>
+<p><code>userId</code> : The user Identifier in Be:Mo's system.</p>
+</blockquote>
+<h4 id="required-parameters-8">Required parameters</h4>
+<blockquote>
+<p><code>cardNumber</code> : this field refers to a unique identification number in your system</p>
+</blockquote>
+<blockquote>
+<p><code>offerId</code> : the pricing offer Identifier in Be:Mo's system.</p>
+</blockquote>
+<blockquote>
+<p><code>billingAddress</code> refers to the place to which the invoice is sent. It is also specified on the invoice.<br />
+<font color='red'>Limitation : To set up a billing address, you must provide , at a minimum, values to <code>line1</code>, <code>city</code>, <code>zipCode</code> and <code>country</code> fields.</font></p>
+<ul>
+<li><code>line1</code> : <em>The first line of the contact's address, which is often a street address or business name.</em></li>
+<li><code>line2</code> : <em>The second line of the contact's address.</em></li>
+<li><code>line3</code> : <em>The third line of the contact's address.</em></li>
+<li><code>line4</code> : <em>The fourth line of the contact's address.</em></li>
+<li><code>city</code>  : <em>The city of the contact's address.</em></li>
+<li><code>localityRegionState</code> : <em>The locality, region or state of the contact's address.</em></li>
+<li><code>zipCode</code> : <em>The zipcode of the contact's address.</em></li>
+<li><code>country</code> : <em>The country of the contact's address.</em></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>shippingAddress</code> refers to the place to which the RFID card should be delivered.
+<font color='red'>Limitation : To set up a shipping address, you must provide , at a minimum, values to <code>line1</code>, <code>city</code>, <code>zipCode</code> and <code>country</code> fields.</font></p>
+<ul>
+<li><code>line1</code> : <em>The first line of the contact's address, which is often a street address or business name.</em></li>
+<li><code>line2</code> : <em>The second line of the contact's address.</em></li>
+<li><code>line3</code> : <em>The third line of the contact's address.</em></li>
+<li><code>line4</code> : <em>The fourth line of the contact's address.</em></li>
+<li><code>city</code>  : <em>The city of the contact's address.</em></li>
+<li><code>localityRegionState</code> : <em>The locality, region or state of the contact's address.</em></li>
+<li><code>zipCode</code> : <em>The zipcode of the contact's address.</em></li>
+<li><code>country</code> : <em>The country of the contact's address.</em></li>
+</ul>
+</blockquote>
+<h4 id="optional-parameter-1">Optional parameter</h4>
+<blockquote>
+<p><code>expireDate</code> :
+if you want to set up a limited lifespan to your RFID card, please complete this field.
+Once the deadline has passed, the RFID card will be automatically <strong>blocked</strong> and its <code>status</code> forced to '<strong><em>expired</em></strong>'.
+<em>If not, the RFID card will have an indefinite useful life, providing there is no opposition</em> (cf. <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#patch-/api/v1/users/-userId-/cards/-cardId-/block"><em>Block a RFID card</em></a>)</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='black'> API - 'Mock card status' in detail </font></summary> 
+<h3 id="mock-card-status">Mock card status</h3>
+<hr />
+<p>Enables the partner to force the status of a prior order from an initial status to a 'target' one.</p>
+<blockquote>
+<p><font color='red'><em><strong>Limitation</strong> : The change from the initial <code>orderStatus</code> to the<code>TargetStatus</code> must be allowed by the workflow of Card order status.</em></font></p>
+</blockquote>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-4d2ab293-d727-4574-903a-935625c17efa.png" alt="image.png" /></p>
+<h4 id="required-parameters-9">Required parameters</h4>
+<blockquote>
+<p><code>orderId</code> : identifier of the card order in Be:Mo's database</p>
+</blockquote>
+<blockquote>
+<p><code>targetStatus</code> : desired order status after the API call.</p>
+<blockquote>
+<p><font color='red'> <strong>Forbidden value :</strong> <code>targetStatus = completed</code> </font>
+<font color='red'> <em>Other values can be forbidden if the status change requested is not compliant with the real lifecycle of a 'card order'.</em> </font></p>
+</blockquote>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='black'> API - 'Activate a card for a user' in detail</font></summary> 
+<h3 id="activate-a-rfid-card-1">Activate a RFID Card</h3>
+<hr />
+<p>Enables the User to activate his/her new card.
+After the process, the card is recognized by CPO's RFID Card readers.</p>
+<h4 id="path-parameter-1">Path parameter</h4>
+<blockquote>
+<p><code>cardId</code> : RFID card's Identifier in Be:Mo's system.</p>
+</blockquote>
+<blockquote>
+<p><code>userId</code> : User's Identifier in Be:Mo's system.</p>
+</blockquote>
+<h4 id="required-parameter-1">Required parameter</h4>
+<blockquote>
+<p><code>verificationCode</code> : the 6 last digits of cardNumber</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='blue'> Partner notification - links to the documentation of related event messages</font></summary> 
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><strong>Event message</strong></th>
+<th style="text-align: left;"><em>Link to dedicated documentation</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">CardOrderCreated</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardOrderCreated"><em>WEBHOOK - Post CardOrderCreated</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardOrderSubmittted</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardOrderSubmitted"><em>WEBHOOK - Post CardOrderSubmittted</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardOrderShipped</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardOrderShipped"><em>WEBHOOK - Post CardOrderShipped</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardCreated</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardCreated"><em>WEBHOOK - Post CardCreated</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardActivated</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardActivated"><em>WEBHOOK - Post CardActivated</em></a></td>
+</tr>
+<tr>
+<td style="text-align: right;">CardOrderCompleted</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardOrderCompleted"><em>WEBHOOK - Post CardOrderCompleted</em></a></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="implementation-2-enroll-external-rfid-card-into-hello-bemo-system">Implementation 2 - Enroll external RFID card into Hello Be:Mo system</h2>
+<hr />
+<h3 id="orchestration-2">Orchestration</h3>
+<p><img src="/Neocra.Markgen/Neocra.Markgen/hello-wiki/.attachments/image-6960b228-4c46-41c8-9295-4ac44956126c.png" alt="image.png" /></p>
+<details>
+  <summary> <font color='red'> Process steps in detail </font></summary> 
+<blockquote>
+<p><strong>PART #1 - ENROLL EXTERNAL RFID CARD INTO BE:MO SYSTEM</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Step number</strong></th>
+<th style="text-align: center;"><em>Triggered by... (<strong>Sender</strong></em>)</th>
+<th style="text-align: center;"><em>For ... (<strong>Recipient</strong>)</em></th>
+<th style="text-align: left;"><em>In order to... (<strong><em>Action</em></strong>)</em></th>
+<th style="text-align: center;"><em>Through...</em> (<strong><em>Medium</em></strong>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Enroll your own RFID card, that you sourced externally, as Be:Mo material</em></td>
+<td style="text-align: center;">API call</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Ackowledge the enrollment request of an external RFID card</em></td>
+<td style="text-align: center;">API callback</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardCreated</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>PART #2 - CARD ACTIVATION</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Step number</strong></th>
+<th style="text-align: center;"><em>Triggered by... (<strong>Sender</strong></em>)</th>
+<th style="text-align: center;"><em>For ... (<strong>Recipient</strong>)</em></th>
+<th style="text-align: left;"><em>In order to... (<strong><em>Action</em></strong>)</em></th>
+<th style="text-align: center;"><em>Through...</em> (<strong><em>Medium</em></strong>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: left;"><em>Activate a card</em></td>
+<td style="text-align: center;">API call</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Ackowledge card activation request</em></td>
+<td style="text-align: center;">API callback</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><font color='orange'> <strong>Be:Mo</strong></font></td>
+<td style="text-align: center;"><font color='red'> <strong>Partner</strong></font></td>
+<td style="text-align: left;"><em>Send <strong>CardActivated</strong> notification</em></td>
+<td style="text-align: center;">Event message</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="related-endpoints-event-messages-2">Related endpoints &amp; event messages</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Operation</strong></th>
+<th style="text-align: center;"><strong>HTTP Method</strong></th>
+<th><strong>Endpoint name</strong></th>
+<th style="text-align: center;"><strong>Authentication</strong></th>
+<th style="text-align: center;"><strong>Condition (on User activation state)</strong></th>
+<th style="text-align: center;"><strong>Condition (on card status)</strong></th>
+<th style="text-align: center;"><strong>Parameters</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create</td>
+<td style="text-align: center;"><font color='green'><strong>POST</strong> </font></td>
+<td>Create a card for a partner</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;"><em><strong>none</strong></em></td>
+<td style="text-align: center;"><code>cardNumber</code>,<code>rifdCardNumber</code>, <code>expireDate</code></td>
+</tr>
+<tr>
+<td>Activate</td>
+<td style="text-align: center;"><font color='orange'><strong>PATCH</strong> </font></td>
+<td>Activate a card for a user</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><code>status = notActivated</code></td>
+<td style="text-align: center;"><code>userId</code>,<code>cardIId</code>,<code>verificationCode</code></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary> <font color='black'> API - 'Create a card for a partner' in detail </font></summary> 
+<h3 id="create-a-card-for-a-partner">Create a card for a partner</h3>
+<hr />
+<p>Enables the Partner to enroll its own RFID card into the Be:Mo system.
+After the process, the card can be assignated to one of its user and activated.</p>
+<h4 id="required-parameters-10">Required parameters</h4>
+<blockquote>
+<p><code>cardNumber</code> : this field refers to a unique identification number in your system</p>
+</blockquote>
+<blockquote>
+<p><code>rfidCardNumber</code> : refers to RFID tag i.e a unique identification number provided by the card manufacturer.</p>
+</blockquote>
+<h4 id="optional-parameter-2">Optional parameter</h4>
+<blockquote>
+<p><code>expireDate</code> :
+if you want to set up a limited lifespan to your RFID card, please complete this field.
+Once the deadline has passed, the RFID card will be automatically <strong>blocked</strong> and its <code>status</code> forced to '<strong><em>expired</em></strong>'.
+<em>If not, the RFID card will have an indefinite useful life, providing there is no opposition</em> (cf. <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#patch-/api/v1/users/-userId-/cards/-cardId-/block"><em>Block a RFID card</em></a>)</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='black'> API - 'Activate a card for a user' in detail</font></summary> 
+<h3 id="activate-a-rfid-card-2">Activate a RFID Card</h3>
+<hr />
+<p>Enables the User to activate his/her new card.
+After the process, the card is recognized by CPO's RFID Card readers.</p>
+<h4 id="path-parameter-2">Path parameter</h4>
+<blockquote>
+<p><code>cardId</code> : RFID card's Identifier in Be:Mo's system.</p>
+</blockquote>
+<blockquote>
+<p><code>userId</code> : User's Identifier in Be:Mo's system.</p>
+</blockquote>
+<h4 id="required-parameter-2">Required parameter</h4>
+<blockquote>
+<p><code>verificationCode</code> : the 6 last digits of cardNumber</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='blue'> Partner notification - links to the documentation of related event messages</font></summary> 
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Event message</strong></th>
+<th style="text-align: left;"><em>Link to dedicated documentation</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">CardCreated</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardCreated"><em>WEBHOOK - Post CardCreated</em></a></td>
+</tr>
+<tr>
+<td style="text-align: center;">CardActivated</td>
+<td style="text-align: left;"><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://sandbox.hello.be-mo.io/#post-CardActivated"><em>WEBHOOK - Post CardActivated</em></a></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h1 id="quick-start-mock-rfid-session">Quick start - Mock RFID session</h1>
+<p>To mimick real-life RFID sessions, <strong>in Test environments only</strong>, Be:Mo provides the <strong>Mock session</strong> microservice.
+Thanks to this artefact, a Dev Team can mock a dozen of use cases (<font color='green'><strong>OK</strong> </font> and <font color='red'> <strong>KO</strong> </font>) which cover a representative sample of real situations. The Team will be able to anticipate :</p>
+<ul>
+<li>all the session status that its system could face</li>
+<li>the inability for several CPO to send all or part of update notifications</li>
+<li>the failure cases etc.</li>
+</ul>
+<h3 id="prerequisites-2">Prerequisites</h3>
+<details>
+  <summary> <font color='red'> if you decided to Order RFID cards through Be:Mo system (IMPLEMENTATION #1) </font></summary> 
+<p>| Prerequisite number | <strong>Related endpoint</strong> | Useful fields for the following actions |
+|:-:|:-|:-:|
+|1|<em><strong>Get a  token</strong></em>|<code>partner token</code>|
+|2|<em><strong>Create a User</strong></em>|<code>userId</code>, <code>isActive = True</code>|
+|3|<em><strong>Create a card order for a user</strong></em>||
+|4|<em><strong>Mock order status</strong> (force order status to 'shipped')</em>|<code>| |5|_**Activate a card for a user**_|</code>cardId<code>, </code>card status = activated`|</p>
+</details>
+<details>
+  <summary> <font color='red'> If you decided to enroll your own RFID cards into Be:Mo system (IMPLEMENTATION #2) </font></summary> 
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Prerequisite number</th>
+<th style="text-align: left;"><strong>Related endpoint</strong></th>
+<th style="text-align: center;">Useful fields for the following actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><em><strong>Get a  token</strong></em></td>
+<td style="text-align: center;"><code>partner token</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><em><strong>Create a User</strong></em></td>
+<td style="text-align: center;"><code>userId</code>, <code>isActive = True</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><em><strong>Create a card for a partner</strong></em></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><em><strong>Activate a card for a user</strong></em></td>
+<td style="text-align: center;"><code>cardId</code>, <code>card status = activated</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="related-endpoints">Related endpoints</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Operation</strong></th>
+<th style="text-align: center;"><strong>HTTP Method</strong></th>
+<th><strong>Endpoint name</strong></th>
+<th style="text-align: center;"><strong>Authentication</strong></th>
+<th style="text-align: center;"><strong>Condition (on User activation state)</strong></th>
+<th style="text-align: center;"><strong>Condition (on 'card' status)</strong></th>
+<th style="text-align: center;"><strong>Parameters</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start</td>
+<td style="text-align: center;"><font color='green'><strong>POST</strong> </font></td>
+<td>Start mocked RFID session</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><code>isActive = True</code></td>
+<td style="text-align: center;"><code>status = activated</code></td>
+<td style="text-align: center;"><code>cardId</code>, <code>serviceLabel</code>/ <code>serviceId</code></td>
+</tr>
+<tr>
+<td>Stop</td>
+<td style="text-align: center;"><font color='green'><strong>POST</strong> </font></td>
+<td>Stop mocked RFID session</td>
+<td style="text-align: center;"><code>partner token</code></td>
+<td style="text-align: center;"><strong><em>none</em></strong></td>
+<td style="text-align: center;"><strong><em>none</em></strong></td>
+<td style="text-align: center;"><code>cardId</code>, <code>serviceLabel</code>/ <code>serviceId</code></td>
+</tr>
+</tbody>
+</table>
+<details>
+  <summary> <font color='black'> API - 'Start mocked charging session with given card' in detail</font></summary>
+<h3 id="start-mocked-charging-session-with-given-card">Start mocked charging session with given card</h3>
+<hr />
+<h4 id="query-parameters">Query parameters</h4>
+<blockquote>
+<p><code>cardId</code> : Identifier of the RFID card in Be:Mo's database</p>
+</blockquote>
+<blockquote>
+<p><code>serviceLabel</code> : Label of the mocked charging scenario
+or
+<code>serviceId</code> : Identifier of the mocked charging scenario</p>
+</blockquote>
+<h4 id="important-outputs-1">Important outputs</h4>
+<blockquote>
+<p><code>serviceId</code></p>
+</blockquote>
+<blockquote>
+<p><code>cardId</code></p>
+</blockquote>
+<blockquote>
+<p><code>userId</code> : Identifier of the mocked charging scenario</p>
+</blockquote>
+<blockquote>
+<p><code>sessionId</code> : Identifier of the session when the <strong>Mock</strong> has functioned properly.</p>
+</blockquote>
+<blockquote>
+<p><code>sessionState</code> : <strong><em>initial</em></strong> status of the session <strong>started</strong> (depends on the charging scenario chosen)</p>
+</blockquote>
+</details>
+<details>
+  <summary> <font color='black'> API - 'Stop mocked charging session with given card' in detail</font></summary>
+<h3 id="stop-mocked-charging-session-with-given-card">Stop mocked charging session with given card</h3>
+<hr />
+<h4 id="query-parameters-1">Query parameters</h4>
+<blockquote>
+<p><code>cardId</code> : Identifier of the RFID card in Be:Mo's database</p>
+</blockquote>
+<blockquote>
+<p><code>serviceLabel</code> : Label of the mocked charging scenario
+or
+<code>serviceId</code> : Identifier of the mocked charging scenario</p>
+</blockquote>
+<h4 id="important-outputs-2">Important outputs</h4>
+<blockquote>
+<p><code>serviceId</code></p>
+</blockquote>
+<blockquote>
+<p><code>cardId</code></p>
+</blockquote>
+<blockquote>
+<p><code>userId</code> : Identifier of the mocked charging scenario</p>
+</blockquote>
+<blockquote>
+<p><code>sessionId</code> : Identifier of the session when the <strong>Mock</strong> has functioned properly.</p>
+</blockquote>
+<blockquote>
+<p><code>sessionState</code> : <strong>final</strong> status of the session <strong>stopped</strong> (depends on the charging scenario chosen)</p>
+</blockquote>
+</details>
+
+    </article>
+</div>
+</body>
+</html>

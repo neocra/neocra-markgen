@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,26 +24,66 @@ public class RenderHtmlTests : BaseTests
     {
         this.testOutputHelper = testOutputHelper;
     }
+    
 
     [Fact]
     public async Task Should_render_page_to_html_When_build_directory()
     {
-        var fileProviderFactory = Substitute.For<IFileProviderFactory>();
-
-        var fileProvider = Substitute.For<IFileProvider>();
-        var directoryContents = GetDirectoryContents(
-            GetFileInfo());
-        fileProvider.GetDirectoryContents("")
-            .Returns(directoryContents);
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md"));
+        });
         
-        fileProviderFactory.GetProvider(Arg.Any<string>())
-            .Returns(fileProvider);
-        this.Services.AddSingleton(fileProviderFactory);
-        
-        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build");
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
 
         await this.Scriban.Received(1)
             .RenderAsync(Arg.Any<string>(), Arg.Any<TemplateContext>());
+    }
+
+    [Fact]
+    public async Task Should_readme_file_is_convert_to_index_html_When_build_directory()
+    {
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetFileInfo("README.md", "/README.md"));
+        });
+        
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        await this.FileWriter.Received(1)
+            .Received(1)
+            .WriteAllTextAsync(".markgen/index.html", Arg.Any<string>());
+    }
+    
+    [Fact]
+    public async Task Should_readme_file_is_convert_to_index_html_When_build_directory_and_sub_directory()
+    {
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetDirectoryInfo("subPath", "/subPath"));
+            AddGetDirectoryContents(p, "subPath", GetFileInfo("README.md", "/subPath/README.md"));
+        });
+        
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        await this.FileWriter.Received(1)
+            .Received(1)
+            .WriteAllTextAsync(".markgen/subPath/index.html", Arg.Any<string>());
+    }
+    
+    [Fact]
+    public async Task Should_readme_file_is_convert_to_index_html_in_menu_When_build_directory()
+    {
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetFileInfo("README.md", "/README.md"));
+        });
+
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        await this.Scriban.Received(1)
+            .RenderAsync(Arg.Any<string>(), 
+                Arg.Is<TemplateContext>(t=>GetMenuItem(t).Children.Any(c=>c.UriPath == "/index.html")));
     }
     
     [Theory]
@@ -50,20 +91,12 @@ public class RenderHtmlTests : BaseTests
     [InlineData(".markgen", "/.markgen", "Markgen")]
     public async Task Should_technical_directory_is_not_in_menu_When_build_directory(string name, string directoryPath, string expectedIgnoreElement)
     {
-        var fileProviderFactory = Substitute.For<IFileProviderFactory>();
-
-        var fileProvider = Substitute.For<IFileProvider>();
-        var directoryContents = GetDirectoryContents(
-            GetDirectoryInfo(name, directoryPath), 
-            GetFileInfo());
-        fileProvider.GetDirectoryContents("")
-            .Returns(directoryContents);
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetDirectoryInfo(name, directoryPath), GetFileInfo("Toto.md", "/Toto.md"));
+        });
         
-        fileProviderFactory.GetProvider(Arg.Any<string>())
-            .Returns(fileProvider);
-        this.Services.AddSingleton(fileProviderFactory);
-        
-        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build");
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
 
         await this.Scriban.Received(1)
             .RenderAsync(Arg.Any<string>(), Arg.Is<TemplateContext>(t=>Is(t, expectedIgnoreElement)));
@@ -86,11 +119,11 @@ public class RenderHtmlTests : BaseTests
         return directoryInfo;
     }
 
-    private static IFileInfo GetFileInfo()
+    private static IFileInfo GetFileInfo(string fileName, string filePath)
     {
         var fileInfo = Substitute.For<IFileInfo>();
-        fileInfo.Name.Returns("Toto.md");
-        fileInfo.PhysicalPath.Returns("/Toto.md");
+        fileInfo.Name.Returns(fileName);
+        fileInfo.PhysicalPath.Returns(filePath);
         var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes("# Toto"));
         fileInfo.CreateReadStream().Returns(memoryStream);
         return fileInfo;
@@ -98,8 +131,37 @@ public class RenderHtmlTests : BaseTests
 
     private static bool Is(TemplateContext t, string title)
     {
+        return GetMenuItem(t).Children.All(c => c.Title != title);
+    }
+
+    private static MenuItem GetMenuItem(TemplateContext t)
+    {
         var value = t.GetValue(
             ScriptVariable.Create("menu_item", ScriptVariableScope.Global));
-        return ((MenuItem)value).Children.All(c => c.Title != title);
+        var menuItem = ((MenuItem)value);
+        return menuItem;
+    }
+    
+    
+    private void AddFileProviderFactory(Action<IFileProvider> addProviders)
+    {
+        var fileProviderFactory = Substitute.For<IFileProviderFactory>();
+        var fileProvider = Substitute.For<IFileProvider>();
+
+        addProviders(fileProvider);
+
+        fileProviderFactory.GetProvider("/")
+            .Returns(fileProvider);
+        
+        this.Services.AddSingleton(fileProviderFactory);
+    }
+    
+    private static void AddGetDirectoryContents(IFileProvider fileProvider,
+        string subpath,
+        params IFileInfo[] files)
+    {
+        var directoryContents = GetDirectoryContents(files);
+        fileProvider.GetDirectoryContents(subpath)
+            .Returns(directoryContents);
     }
 }

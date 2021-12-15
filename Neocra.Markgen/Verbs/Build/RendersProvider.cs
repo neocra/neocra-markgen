@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Markdig;
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Neocra.Markgen.Domain;
 using Neocra.Markgen.Domain.Markdig;
+using Neocra.Markgen.Infrastructure;
 
 namespace Neocra.Markgen.Verbs.Build;
 
@@ -16,12 +18,18 @@ public class RendersProvider
     private readonly ILogger<RendersProvider> logger;
     private readonly MarkdownTransform markdownTransform;
     private readonly RapidocExtension rapidocExtension;
+    private readonly IFileWriter fileWriter;
 
-    public RendersProvider(ILogger<RendersProvider> logger, MarkdownTransform markdownTransform, RapidocExtension rapidocExtension)
+    public RendersProvider(
+        ILogger<RendersProvider> logger,
+        MarkdownTransform markdownTransform,
+        RapidocExtension rapidocExtension,
+        IFileWriter fileWriter)
     {
         this.logger = logger;
         this.markdownTransform = markdownTransform;
         this.rapidocExtension = rapidocExtension;
+        this.fileWriter = fileWriter;
     }
 
     public async Task Renders(List<Entry> sourceEntries, MenuItem menu, string optionsSource, string destination, string baseUri)
@@ -65,29 +73,41 @@ public class RendersProvider
     {
         var pipeline = new MarkdownPipelineBuilder()
             .UseAdvancedExtensions()
-            .Use(rapidocExtension)
+            .Use(this.rapidocExtension)
             .Use<DiagramExtension>()
             .UseYamlFrontMatter()
             .Build();
         
-        var content = DocumentProcessed(markdownPage.MarkdownDocument,
+        var content = this.DocumentProcessed(markdownPage.MarkdownDocument,
             link => $"{baseUri}{link.Url}")
             .ToHtml(pipeline);
         var markdownPage1 = new RenderModelMarkdownPage(menu, markdownPage, content);
 
         var mdFileInfo = markdownPage1.Model.FileInfo;
-        var destinationFile = Path.GetRelativePath(optionsSource, mdFileInfo.PhysicalPath);
-        destinationFile = Path.Combine(destination, destinationFile);
-        destinationFile = Path.ChangeExtension(destinationFile, ".html");
-            
+        var destinationFile = GetDestinationFile(optionsSource, destination, mdFileInfo);
+
         var directoryName = new FileInfo(destinationFile).DirectoryName;
         if (!string.IsNullOrEmpty(directoryName))
         {
-            Directory.CreateDirectory(directoryName);
+            this.fileWriter.CreateDirectory(directoryName);
         }
 
-        await File.WriteAllTextAsync(destinationFile, 
+        await this.fileWriter.WriteAllTextAsync(destinationFile, 
             await this.markdownTransform.RenderHtml(markdownPage1, baseUri));
+    }
+
+    private static string GetDestinationFile(string optionsSource, string destination, IFileInfo mdFileInfo)
+    {
+        var physicalPath = mdFileInfo.PhysicalPath;
+        if (mdFileInfo.Name == "README.md")
+        {
+            physicalPath = physicalPath.Substring(0, physicalPath.Length - 9) + "index";
+        }
+
+        var destinationFile = Path.GetRelativePath(optionsSource, physicalPath);
+        destinationFile = Path.Combine(destination, destinationFile);
+        destinationFile = Path.ChangeExtension(destinationFile, ".html");
+        return destinationFile;
     }
 
     private async Task Render(Image image, string source, string destination)

@@ -15,10 +15,12 @@ public class BaseTests
 {
     protected readonly ServiceCollection Services = new();
     protected readonly IScriban Scriban;
+    protected readonly IFileWriter FileWriter;
 
     protected BaseTests(ITestOutputHelper testOutputHelper)
     {
         this.Scriban = this.Services.AddSubstituteSingleton<IScriban>();
+        this.FileWriter = this.Services.AddSubstituteSingleton<IFileWriter>();
         this.Services.AddSubstituteSingleton<IDeserializer>();
 
         this.Services.AddSingleton<BuildCommand>();

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Vehicles API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.0.0/github-markdown.min.css" integrity="sha512-nxv6uny69e6SeGW/aOEW0iC2+ruQMKvFDbjav6sVu1dr89ioo5wBm3F0IbBGsNyAt6nuBR/x2HUSx0a7wLEegA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+</head>
+<body>
+<div>
+    <menu>
+        
+
+<ul>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Overall-Architecture.html">
+                    Overall Architecture
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Getting-started.html">
+                    Getting started
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Users.html">
+                    Users
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/RFID-Cards.html">
+                    RFID Cards
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Card-Pricing.html">
+                    Card Pricing
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/References.html">
+                    References
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Vehicles.html">
+                    Vehicles API
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Services.html">
+                    Services
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Sessions.html">
+                    Sessions
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Mock-(charging-sessions).html">
+                    Mock (charging sessions)
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Pricing-Engine.html">
+                    Pricing Engine
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Vehicles.html">
+                    Vehicles API
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/RFID-Cards.html">
+                    RFID Cards
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Pricing-Engine.html">
+                    Pricing Engine
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Overall-Architecture.html">
+                    Overall Architecture
+                </a>
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Overall-Architecture/Configuration-Conventions.html">
+                    Configuration Conventions
+                </a>
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Overall-Architecture.html">
+                    Overall Architecture
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Card-Pricing.html">
+                    Card Pricing
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Getting-started.html">
+                    Getting started
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Mock-(charging-sessions).html">
+                    Mock (charging sessions)
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Users.html">
+                    Users
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/References.html">
+                    References
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Services.html">
+                    Services
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Retype
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                References
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                overall architecture
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                configuration conventions
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+        <li>
+            
+                Resources
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                Css
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Js
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Fonts
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+        <li>
+            
+                card pricing
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                pricing engine
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Sessions
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                getting started
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                rfid cards
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Users
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Vehicles
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                mock (charging sessions)
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Services
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+        <li>
+            
+                <a href="/Neocra.Markgen/Neocra.Markgen/hello-wiki/Sessions.html">
+                    Sessions
+                </a>
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Attachments
+            
+            
+            
+
+        </li>
+    
+        <li>
+            
+                Idea
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                Idea hello wiki dir
+            
+            
+            
+
+<ul>
+    
+        <li>
+            
+                Idea
+            
+            
+            
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+</ul>
+
+        </li>
+    
+</ul>
+
+    </menu>
+    <article class="markdown-body">
+        <h1 id="vehicles">Vehicles</h1>
+<p>The <strong>vehicle</strong> belongs to a User and enables her/him to :</p>
+<ul>
+<li>retrieves the POI (Point of Interest <em>i.e fueling station, charging point</em>...) according to the <strong>vehicle type</strong></li>
+<li>trigger the driver journey.</li>
+</ul>
+<p>The <strong>Vehicles Micro-service</strong> supports all the Endpoints needed to complete the CRUD (Create, Read, Update, Delete) operations and manage the <strong>Vehicle</strong> lifecycle.</p>
+<rapi-doc-mini spec-url="https://dev.hello.be-mo.io/swagger/v1/swagger.json" match-paths="users/.*/vehicles" match-type="regex" ></rapi-doc-mini><h3 id="create-vehicle">Create Vehicle</h3>
+<hr />
+<p>This reference describes how to create a new vehicle through the REST API.
+At a minimum, you must specify the required properties for the vehicle.
+<em>You can optionally specify any other writable properties.</em></p>
+<h4 id="prerequisites">Prerequisites</h4>
+<p>A vehicle is linked to a User by a One-to-many relationship (<em>1 user can have many vehicles</em>).
+If you want to create a new vehicle, you must :</p>
+<ul>
+<li><a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://uat.hello.be-mo.io/#post-/api/v1/users">create a User</a> first</li>
+<li>and provide the <code>userId</code> contained in the callout of the above-mentionned endpoint.</li>
+</ul>
+<h4 id="required-parameters">Required parameters</h4>
+<blockquote>
+<p><code>userId</code> : the User identifier in Be:Mo's database.</p>
+</blockquote>
+<blockquote>
+<p><code>fullname</code> : The vehicle name, which is often defined by the User
+<font color='red'>Limitation : Be:Mo doesn't realize unicity checks on vehicle fullname entries.</font></p>
+</blockquote>
+<blockquote>
+<p><code>vehicleType</code> : The vehicle type depends on the propulsion system. It can be :</p>
+<ul>
+<li><strong>Thermic</strong> for Internal Combustion Engines (ICE),</li>
+<li><strong>Electric</strong> for Plug-in Eletric Vehicles (PEV)</li>
+<li><strong>PlugInHybrid</strong> for plug-in hybrid electric vehicles (PHEV).</li>
+</ul>
+<p><font color='red'>Limitation : Mild hybrid and Full hybrid vehicles (that don't feature plug-in recharging facility) are considered to be Thermic in Be:Mo database model.  .</font></p>
+</blockquote>
+<h4 id="optional-parameters">Optional parameters</h4>
+<blockquote>
+<blockquote>
+<p><code>brand</code> : The vehicle brand or make.
+<em>Example : &quot;Renault&quot;</em></p>
+</blockquote>
+<blockquote>
+<p><code>model</code> : The vehicle model (depends on the brand).
+<em>Example : &quot;Zoe&quot;</em></p>
+</blockquote>
+<blockquote>
+<p><code>version</code> : Version of the vehicle model (depends on the brand &amp; model).
+<em>Example : &quot;R110&quot;</em></p>
+</blockquote>
+<blockquote>
+<p><code>year</code> : The vehicle's model year
+<em>Example : &quot;2019&quot;</em></p>
+</blockquote>
+<p>Be:Mo provides an EV referral database available through the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://uat.hello.be-mo.io/#get-/api/v1/References/vehicles/profiles">Get vehicles profiles by brand</a>.
+It enables you to implement drop-down lists in order to avoid users typo and ensure vehicles data consistency.</p>
+</blockquote>
+<blockquote>
+<p><code>productCodes</code> : Be:Mo uses codes to distinguish the different products types from each other.
+It can refer to  :</p>
+<ul>
+<li>for ICE and PHEV, the fuel types.
+<em>Example : <strong>E85</strong> for  Ethanol, <strong>B7</strong> for Diesel etc.</em></li>
+<li>for PEV and PHEV, the attributes of the energy supply (range of power delivered, speed of charge).
+<em>Example :  <strong>E_Standard</strong> for a Slow charging (&gt; 5h), <strong>E_ultraFast</strong> for an ultra fast charging (&lt; 30 min) etc.</em></li>
+</ul>
+<p>The complete list of <strong>productCodes</strong> can be retrieved through the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://uat.hello.be-mo.io/#get-/api/v1/References/products">Get Products List</a></p>
+</blockquote>
+<blockquote>
+<p><code>connectorCodes</code> : Be:Mo uses codes to distinguish the different charging connectors (plug and socket) from each other.
+The complete list of <strong>connectorCodes</strong> can be retrieved through the endpoint <a href="/Neocra.Markgen/Neocra.Markgen/hello-wikihttps://uat.hello.be-mo.io/#get-/api/v1/References/connectors">Get Connectors List</a>
+<font color='red'>Limitation : This field only makes sense for Electric (PEV) and Plug-in hybrid vehicles (PHEV) .</font></p>
+</blockquote>
+<blockquote>
+<p><code>powerMax</code> : The maximum power charge of the vehicle batteries in kWh.
+<font color='red'>Limitation : This field only makes sense for Electric (PEV) and Plug-in hybrid vehicles (PHEV) .</font></p>
+</blockquote>
+<h3 id="get-vehicles-by-userid">Get vehicles (by userId)</h3>
+<hr />
+<p>Retrieves the list of vehicles related to a given user.</p>
+<h3 id="path-parameter">Path parameter</h3>
+<blockquote>
+<p><code>userId</code></p>
+</blockquote>
+<h3 id="get-vehicle-details-by-userid-vehicleid">Get vehicle details (by userId &amp; vehicleId)</h3>
+<hr />
+<p>Retrieves the information about a vehicle related to a given user.</p>
+<h4 id="path-parameters">Path parameters</h4>
+<blockquote>
+<p><code>userId</code></p>
+</blockquote>
+<blockquote>
+<p><code>vehicleId</code></p>
+</blockquote>
+<h3 id="update-vehicle">Update vehicle</h3>
+<hr />
+<p>Enables you modify the information that has been entered during the vehicle creation or previous update.
+All the fields are re-writable.</p>
+<h4 id="use-cases">Use cases</h4>
+<blockquote>
+<blockquote>
+<p><strong>How to fill up empty fields</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>How to update previous entries</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>How to clear a field</strong><br />
+<font color='red'> Limitation : Only if the field is optional and nullable.</font></p>
+</blockquote>
+</blockquote>
+<h3 id="delete-vehicle">Delete vehicle</h3>
+<hr />
+<p>Enables the deletion of a vehicle.
+<font color='red'> Limitation : TBD (impacts on user's activity history).</font></p>
+<h4 id="path-parameter-1">Path parameter</h4>
+<blockquote>
+<p><code>userId</code></p>
+</blockquote>
+<blockquote>
+<p><code>vehicleId</code></p>
+</blockquote>
+
+    </article>
+</div>
+</body>
+</html>
