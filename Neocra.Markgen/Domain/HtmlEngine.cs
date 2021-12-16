@@ -35,6 +35,4 @@ public class HtmlEngine
 
         return await this.scriban.RenderAsync(template, context);
     }
-
-   
 }

@@ -81,7 +81,7 @@ public class RendersProvider
         var content = this.DocumentProcessed(markdownPage.MarkdownDocument,
             link => $"{baseUri}{link.Url}")
             .ToHtml(pipeline);
-        var markdownPage1 = new RenderModelMarkdownPage(menu, markdownPage, content);
+        var markdownPage1 = new RenderModelMarkdownPage(menu, markdownPage, content, baseUri);
 
         var mdFileInfo = markdownPage1.Model.FileInfo;
         var destinationFile = GetDestinationFile(optionsSource, destination, mdFileInfo);

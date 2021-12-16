@@ -1,7 +1,6 @@
 ﻿using System.CommandLine;
 using System.CommandLine.IO;
 using System.Threading.Tasks;
-using Markdig;
 using Microsoft.Extensions.DependencyInjection;
 using Neocra.Markgen.Domain;
 using Neocra.Markgen.Domain.Markdig;
@@ -59,6 +58,7 @@ namespace Neocra.Markgen
             services.AddSingleton<CodeBlockRenderer>();
             services.AddSingleton<RapidocExtension>();
             services.AddSingleton<RendersProvider>();
+            services.AddSingleton<UriHelper>();
 
             services.AddSingleton<IFileProviderFactory, PhysicalFileProviderFactory>();
 

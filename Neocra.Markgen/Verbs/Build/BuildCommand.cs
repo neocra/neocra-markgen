@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,9 +5,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Humanizer;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.FileProviders.Physical;
 using Microsoft.Extensions.Logging;
 using Neocra.Markgen.Domain;
+using Neocra.Markgen.Infrastructure;
 using Neocra.Markgen.Tools;
 
 namespace Neocra.Markgen.Verbs.Build;
@@ -19,13 +18,22 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
     private readonly RendersProvider rendersProvider;
     private readonly IFileProviderFactory fileProviderFactory;
     private readonly MarkdownTransform markdownTransform;
+    private readonly UriHelper uriHelper;
+    private readonly IFileWriter fileWriter;
 
-    public BuildCommand(MarkdownTransform markdownTransform, ILogger<BuildCommand> logger, RendersProvider rendersProvider, IFileProviderFactory fileProviderFactory)
+    public BuildCommand(MarkdownTransform markdownTransform,
+        ILogger<BuildCommand> logger,
+        RendersProvider rendersProvider, 
+        IFileProviderFactory fileProviderFactory,
+        UriHelper uriHelper, 
+        IFileWriter fileWriter)
     {
         this.markdownTransform = markdownTransform;
         this.logger = logger;
         this.rendersProvider = rendersProvider;
         this.fileProviderFactory = fileProviderFactory;
+        this.uriHelper = uriHelper;
+        this.fileWriter = fileWriter;
     }
         
     public async Task RunAsync(BuildOptions options)
@@ -43,9 +51,7 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
         {
             destination = options.Destination;
         }
-            
-        await CopyEmbeddedFile(destination, "splendor.min.css");
-            
+        
         var directorySource = new DirectoryInfo(optionsSource);
         var physicalFileProvider =
             fileProviderFactory.GetProvider(directorySource.FullName);
@@ -61,6 +67,8 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
         this.LogMenu(menu, string.Empty);
 
         await this.rendersProvider.Renders(sourceEntries, menu, optionsSource, destination, options.BaseUri ?? string.Empty);
+        
+        await this.CopyEmbeddedFile(Path.Combine(destination, "resources"), "default.css");
     }
     
     private void LogMenu(MenuItem menu, string baseString)
@@ -102,14 +110,14 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
             {
                 if (info.Name == "README.md")
                 {
-                    menu = new MenuItem("README", info.PhysicalPath, this.GetUri(baseUri, baseDirectory, info.PhysicalPath));
+                    menu = new MenuItem("README", info.PhysicalPath, this.uriHelper.GetUri(baseUri, baseDirectory, info.PhysicalPath));
                 }
                 
                 if (Path.GetExtension(info.Name) == ".md")
                 {
                     this.logger.LogInformation("Found {mdFile}", info.PhysicalPath);
-                    var modelMarkdownFile = await this.markdownTransform.GetModelMarkdownFile(info);
-                    subMenuItems.Add(new MenuItem(GetTitleFromMarkdownFile(modelMarkdownFile), modelMarkdownFile.FileInfo.PhysicalPath, this.GetUri(baseUri, baseDirectory, modelMarkdownFile.FileInfo.PhysicalPath)));
+                    var modelMarkdownFile = await this.markdownTransform.GetModelMarkdownFile(info, baseUri, baseDirectory);
+                    subMenuItems.Add(modelMarkdownFile.MenuItem);
                     entries.Add(modelMarkdownFile);
                 }
 
@@ -130,7 +138,7 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
             var parentPath = Path.Combine(directorySource.FullName, "..", $"{directorySource.Name}.md");
             if (File.Exists(parentPath))
             {
-                menu = new MenuItem(directorySource.Name.Humanize(), parentPath, this.GetUri(baseUri, baseDirectory, parentPath));
+                menu = new MenuItem(directorySource.Name.Humanize(), parentPath, this.uriHelper.GetUri(baseUri, baseDirectory, parentPath));
             }
             else
             {
@@ -142,20 +150,7 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
 
         return (entries, menu);
     }
-
-    private string GetUri(string baseUri, string baseDirectory, string infoFullName)
-    {
-        if (infoFullName.EndsWith("README.md"))
-        {
-            infoFullName = infoFullName.Substring(0, infoFullName.Length - 9) + "index";
-        }
-        
-        var path = Path.GetRelativePath(baseDirectory, infoFullName);
-
-        var extension = Path.GetExtension(path);
-        return $"{baseUri}/{path.Substring(0,path.Length - extension.Length)}.html";
-    }
-
+    
     private static IFileInfo[] GetFiles(IFileProvider physicalFileProvider, string subpath)
     {       
         var source = physicalFileProvider;
@@ -200,81 +195,18 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
         return null;
     }
 
-    private static string GetTitleFromMarkdownFile(MarkdownPage modelMarkdownFile)
-    {
-        var s = modelMarkdownFile.FrontMatter.Title;
-        if (s != null)
-        {
-            return s;
-        }
-
-        return Path.GetFileNameWithoutExtension(modelMarkdownFile.FileInfo.Name)
-            .Humanize();
-    }
-
-    private static async Task CopyEmbeddedFile(string destination, string name)
+    private async Task CopyEmbeddedFile(string destination, string name)
     {
         var assembly = typeof(BuildCommand).GetTypeInfo().Assembly;
 
-        var resource = assembly.GetManifestResourceStream($"Neocra.Markgen.{name}");
+        var resource = assembly.GetManifestResourceStream($"Neocra.Markgen.Template.{name}");
 
         if (resource != null)
         {
-            var file = File.OpenWrite(Path.Combine(destination, name));
+            var content = await new StreamReader(resource).ReadToEndAsync();
 
-            await resource.CopyToAsync(file);
-            await resource.FlushAsync();
-            file.Flush();
-            file.Close();
+            fileWriter.CreateDirectory(destination);
+            await this.fileWriter.WriteAllTextAsync( Path.Combine(destination, name), content);
         }
-    }
-}
-
-public interface IFileProviderFactory
-{
-    IFileProvider GetProvider(string directorySourceFullName);
-}
-
-class PhysicalFileProviderFactory : IFileProviderFactory
-{
-    public IFileProvider GetProvider(string directorySourceFullName)
-    {
-        return new PhysicalFileProvider(directorySourceFullName, ExclusionFilters.None);
-    }
-}
-
-internal class FileInfoEquality : IEqualityComparer<IFileInfo>
-{
-    public bool Equals(IFileInfo? x, IFileInfo? y)
-    {
-        return false;
-    }
-    
-    public int GetHashCode(IFileInfo obj)
-    {
-        return 0;
-    }
-}
-
-internal class FileSystemEquality : IEqualityComparer<FileSystemInfo>
-{
-    public bool Equals(FileSystemInfo? x, FileSystemInfo? y)
-    {
-        return XFullName(x) == XFullName(y);
-    }
-
-    private static string? XFullName(FileSystemInfo? x)
-    {
-        if (x is FileInfo d)
-        {
-            return x?.FullName.Substring(0, x.FullName.Length - x.Extension.Length);
-        }
-        
-        return x?.FullName;
-    }
-
-    public int GetHashCode(FileSystemInfo obj)
-    {
-        return 0;
     }
 }
