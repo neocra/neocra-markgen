@@ -21,11 +21,14 @@
             end
         }}
     </nav>
-    <article class="markdown-body js-toc-content">
-        {{ markdown_page_content_html }}
+    <article class="markdown-body js-toc-content right-sample">
+        <div class="right-panel"></div>
+        <div class="content">
+            {{ markdown_page_content_html }}
+        </div>
     </article>
 
-<script language="JavaScript">
+<script>
     tocbot.init({
         // Where to render the table of contents.
         tocSelector: '.js-toc',
