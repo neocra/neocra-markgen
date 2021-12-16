@@ -101,6 +101,21 @@ public class RenderHtmlTests : BaseTests
         await this.Scriban.Received(1)
             .RenderAsync(Arg.Any<string>(), Arg.Is<TemplateContext>(t=>Is(t, expectedIgnoreElement)));
     }
+    
+    [Fact]
+    public async Task Should_get_current_menu_When_build_directory()
+    {
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md"));
+        });
+        
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        await this.Scriban.Received(1)
+            .RenderAsync(Arg.Any<string>(), Arg.Is<TemplateContext>(t=> ((MarkdownPage)t.GetValue(
+                ScriptVariable.Create("model", ScriptVariableScope.Global))).MenuItem.Title == "Toto"));
+    }
 
     private static IDirectoryContents GetDirectoryContents(params IFileInfo[] files)
     {

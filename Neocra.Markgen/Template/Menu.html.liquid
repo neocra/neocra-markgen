@@ -2,8 +2,12 @@
 {{ if children.size != 0 }}
 <ul>
     {{ for item in children  }}
-        <li>
-            {{ if item.uri_path }}
+        {{ if item.uri_path == model.menu_item.uri_path }}
+            <li class="selected">
+        {{ else }}
+            <li>
+        {{ end }}
+            {{  if item.uri_path }}
                 <a href="{{ item.uri_path }}">
                     {{ item.title }}
                 </a>

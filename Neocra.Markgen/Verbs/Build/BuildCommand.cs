@@ -108,8 +108,10 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
                 if (Path.GetExtension(info.Name) == ".md")
                 {
                     this.logger.LogInformation("Found {mdFile}", info.PhysicalPath);
-                    var modelMarkdownFile = await this.markdownTransform.GetModelMarkdownFile(info);
-                    subMenuItems.Add(new MenuItem(GetTitleFromMarkdownFile(modelMarkdownFile), modelMarkdownFile.FileInfo.PhysicalPath, this.GetUri(baseUri, baseDirectory, modelMarkdownFile.FileInfo.PhysicalPath)));
+                    var modelMarkdownFile = await this.markdownTransform.GetModelMarkdownFile(info, baseUri, baseDirectory);
+                    var title = GetTitleFromMarkdownFile(modelMarkdownFile);
+                    var menuItem = new MenuItem(title, modelMarkdownFile.FileInfo.PhysicalPath, this.GetUri(baseUri, baseDirectory, modelMarkdownFile.FileInfo.PhysicalPath));
+                    subMenuItems.Add(menuItem);
                     entries.Add(modelMarkdownFile);
                 }
 
@@ -220,7 +222,7 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
 
         if (resource != null)
         {
-            var file = File.OpenWrite(Path.Combine(destination, name));
+            var file = File.Open(Path.Combine(destination, name), FileMode.Truncate);
 
             await resource.CopyToAsync(file);
             await resource.FlushAsync();
@@ -247,33 +249,15 @@ internal class FileInfoEquality : IEqualityComparer<IFileInfo>
 {
     public bool Equals(IFileInfo? x, IFileInfo? y)
     {
-        return false;
+        return XFullName(x) == XFullName(y);
+    }
+    
+    private static string? XFullName(IFileInfo? x)
+    {
+        return x?.PhysicalPath.Substring(0, x.PhysicalPath.Length - Path.GetExtension(x.PhysicalPath).Length);
     }
     
     public int GetHashCode(IFileInfo obj)
-    {
-        return 0;
-    }
-}
-
-internal class FileSystemEquality : IEqualityComparer<FileSystemInfo>
-{
-    public bool Equals(FileSystemInfo? x, FileSystemInfo? y)
-    {
-        return XFullName(x) == XFullName(y);
-    }
-
-    private static string? XFullName(FileSystemInfo? x)
-    {
-        if (x is FileInfo d)
-        {
-            return x?.FullName.Substring(0, x.FullName.Length - x.Extension.Length);
-        }
-        
-        return x?.FullName;
-    }
-
-    public int GetHashCode(FileSystemInfo obj)
     {
         return 0;
     }

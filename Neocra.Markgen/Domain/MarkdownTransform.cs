@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Humanizer;
 using Markdig;
 using Markdig.Extensions.Yaml;
 using Markdig.Syntax;
@@ -34,7 +35,7 @@ public class MarkdownTransform
             .Build();
 
         var document = Markdown.Parse(markdown, pipeline, new MarkdownParserContext());
-        var modelMarkdownFile = new MarkdownPage(new PhysicalFileInfo(new FileInfo("")), document, GetFrontMatter(document));
+        var modelMarkdownFile = new MarkdownPage(new PhysicalFileInfo(new FileInfo("")), document, GetFrontMatter(document), new MenuItem("", "",""));
 
         return await this.RenderHtml(new RenderModelMarkdownPage(new MenuItem("", "", ""), modelMarkdownFile, document.ToHtml(pipeline), ""), string.Empty);
     }
@@ -44,7 +45,7 @@ public class MarkdownTransform
         return await this.engine.CompileRenderAsync("View", modelMarkdownPageMarkdownFile);
     }
 
-    public async Task<MarkdownPage> GetModelMarkdownFile(IFileInfo file)
+    public async Task<MarkdownPage> GetModelMarkdownFile(IFileInfo file, string baseUri, string baseDirectory)
     {
         using (var reader = new StreamReader(file.CreateReadStream()))
         {
@@ -57,11 +58,38 @@ public class MarkdownTransform
                 .Build();
 
             var document = Markdown.Parse(sourceMd, pipeline, new MarkdownParserContext());
-
-            return new MarkdownPage(file, document, GetFrontMatter(document));
+            var pageFrontMatter = this.GetFrontMatter(document);
+            var title = GetTitleFromMarkdownFile(pageFrontMatter, file);
+            var menuItem = new MenuItem(title, file.PhysicalPath, this.GetUri(baseUri, baseDirectory, file.PhysicalPath));
+            return new MarkdownPage(file, document, pageFrontMatter, menuItem);
         }
     }
 
+    private string GetUri(string baseUri, string baseDirectory, string infoFullName)
+    {
+        if (infoFullName.EndsWith("README.md"))
+        {
+            infoFullName = infoFullName.Substring(0, infoFullName.Length - 9) + "index";
+        }
+        
+        var path = Path.GetRelativePath(baseDirectory, infoFullName);
+
+        var extension = Path.GetExtension(path);
+        return $"{baseUri}/{path.Substring(0,path.Length - extension.Length)}.html";
+    }
+    
+    private string GetTitleFromMarkdownFile(PageFrontMatter modelMarkdownFile, IFileInfo file)
+    {
+        var s =modelMarkdownFile.Title;
+        if (s != null)
+        {
+            return s;
+        }
+
+        return Path.GetFileNameWithoutExtension(file.Name)
+            .Humanize();
+    }
+    
     private PageFrontMatter GetFrontMatter(MarkdownDocument document)
     {
         var yamlFrontMatterBlock = document

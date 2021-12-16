@@ -4,7 +4,7 @@ body{
     grid-template-columns: 240px 100%;
     justify-content: stretch;
     color: #707070;
-    margin: 18px;
+    margin: 0;
 }
 
 a{
@@ -34,4 +34,9 @@ nav ul li a{
     text-decoration: none;
     background-color: #FAFAFA;
     margin: 0 0 2px 0;
+}
+
+nav ul li.selected a{
+    background-color: #333333;
+    color: #FFFFFF;
 }
