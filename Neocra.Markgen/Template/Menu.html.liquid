@@ -14,7 +14,13 @@
             {{ else }}
                 {{ item.title }}
             {{ end }}
-            
+
+            {{ if item.uri_path == model.menu_item.uri_path}}
+            <div class="js-toc">
+                
+            </div>
+            {{ end }}
+
             {{ 
                 context = {children:item.children}
                 with  context

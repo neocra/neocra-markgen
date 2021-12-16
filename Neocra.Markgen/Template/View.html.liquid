@@ -4,7 +4,10 @@
 <head>
     <title>{{ model.front_matter.title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.0.0/github-markdown.min.css" integrity="sha512-nxv6uny69e6SeGW/aOEW0iC2+ruQMKvFDbjav6sVu1dr89ioo5wBm3F0IbBGsNyAt6nuBR/x2HUSx0a7wLEegA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ base_uri }}/default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css">
+    <link rel="stylesheet" href="{{ base_uri }}/resources/default.css" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
@@ -18,8 +21,21 @@
             end
         }}
     </nav>
-    <article class="markdown-body">
+    <article class="markdown-body js-toc-content">
         {{ markdown_page_content_html }}
     </article>
+
+<script language="JavaScript">
+    tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: false,
+    });
+</script>
 </body>
 </html>

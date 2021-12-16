@@ -1,4 +1,3 @@
-using System.IO;
 using Markdig.Syntax;
 using Microsoft.Extensions.FileProviders;
 
@@ -8,7 +7,7 @@ public class MarkdownPage : Entry
 {
     public MarkdownPage(IFileInfo fileInfo,
         MarkdownDocument markdownDocument,
-        PageFrontMatter frontMatter, 
+        PageFrontMatter frontMatter,
         MenuItem menuItem)
     {
         this.FileInfo = fileInfo;
@@ -18,11 +17,12 @@ public class MarkdownPage : Entry
     }
 
     public IFileInfo FileInfo { get; }
+    
     public MarkdownDocument MarkdownDocument { get; }
 
     public PageFrontMatter FrontMatter { get; }
-
-
+    
     public override string Name => FileInfo.PhysicalPath;
+    
     public MenuItem MenuItem { get; }
 }
