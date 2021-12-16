@@ -36,7 +36,7 @@ public class MarkdownTransform
         var document = Markdown.Parse(markdown, pipeline, new MarkdownParserContext());
         var modelMarkdownFile = new MarkdownPage(new PhysicalFileInfo(new FileInfo("")), document, GetFrontMatter(document));
 
-        return await this.RenderHtml(new RenderModelMarkdownPage(new MenuItem("", "", ""), modelMarkdownFile, document.ToHtml(pipeline)), string.Empty);
+        return await this.RenderHtml(new RenderModelMarkdownPage(new MenuItem("", "", ""), modelMarkdownFile, document.ToHtml(pipeline), ""), string.Empty);
     }
 
     public async Task<string> RenderHtml(RenderModelMarkdownPage modelMarkdownPageMarkdownFile, string baseUri)

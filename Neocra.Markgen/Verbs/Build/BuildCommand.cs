@@ -43,9 +43,7 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
         {
             destination = options.Destination;
         }
-            
-        await CopyEmbeddedFile(destination, "splendor.min.css");
-            
+        
         var directorySource = new DirectoryInfo(optionsSource);
         var physicalFileProvider =
             fileProviderFactory.GetProvider(directorySource.FullName);
@@ -61,6 +59,8 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
         this.LogMenu(menu, string.Empty);
 
         await this.rendersProvider.Renders(sourceEntries, menu, optionsSource, destination, options.BaseUri ?? string.Empty);
+        
+        await CopyEmbeddedFile(destination, "default.css");
     }
     
     private void LogMenu(MenuItem menu, string baseString)
@@ -216,7 +216,7 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
     {
         var assembly = typeof(BuildCommand).GetTypeInfo().Assembly;
 
-        var resource = assembly.GetManifestResourceStream($"Neocra.Markgen.{name}");
+        var resource = assembly.GetManifestResourceStream($"Neocra.Markgen.Template.{name}");
 
         if (resource != null)
         {

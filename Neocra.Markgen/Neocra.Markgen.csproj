@@ -30,6 +30,8 @@
       <EmbeddedResource Include="Template\Menu.html.liquid" />
       <EmbeddedResource Include="Template\View.html.liquid" />
       <None Include="icon.png" Pack="true" PackagePath="\" />
+      <None Remove="Template\default.css" />
+      <EmbeddedResource Include="Template\default.css" />
     </ItemGroup>
 
 </Project>
