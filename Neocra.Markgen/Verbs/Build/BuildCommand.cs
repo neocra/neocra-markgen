@@ -130,6 +130,11 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
                 {
                     entries.Add(new Image(info));
                 }
+
+                if (Path.GetExtension(info.Name) == ".css")
+                {
+                    entries.Add(new CssFile(info));
+                }
             }
         }
         

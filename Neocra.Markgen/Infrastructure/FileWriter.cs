@@ -14,4 +14,9 @@ public class FileWriter : IFileWriter
     {
         Directory.CreateDirectory(directoryName);
     }
+
+    public void Copy(string source, string destination, bool overwrite)
+    {
+        File.Copy(source, destination, true);
+    }
 }

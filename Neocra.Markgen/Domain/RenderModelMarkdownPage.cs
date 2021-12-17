@@ -2,12 +2,18 @@ namespace Neocra.Markgen.Domain;
 
 public class RenderModelMarkdownPage
 {
-    public RenderModelMarkdownPage(MenuItem menuItem, MarkdownPage model, string markdownPageContentHtml, string baseUri)
+    public RenderModelMarkdownPage(
+        MenuItem menuItem, 
+        MarkdownPage model, 
+        string markdownPageContentHtml,
+        string baseUri, 
+        HeaderLink[] header)
     {
         this.MenuItem = menuItem;
         this.Model = model;
         this.MarkdownPageContentHtml = markdownPageContentHtml;
         this.BaseUri = baseUri;
+        this.Header = header;
     }
 
     public MenuItem MenuItem { get; }
@@ -15,5 +21,6 @@ public class RenderModelMarkdownPage
     
     public string MarkdownPageContentHtml { get; }
     public string BaseUri { get; }
-
+    
+    public HeaderLink[] Header { get; }
 }

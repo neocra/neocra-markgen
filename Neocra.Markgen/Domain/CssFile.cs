@@ -2,14 +2,14 @@ using Microsoft.Extensions.FileProviders;
 
 namespace Neocra.Markgen.Domain;
 
-internal class Image : Entry, ICopyFile
+public class CssFile : Entry, ICopyFile
 {
-    public IFileInfo FileInfo { get; }
-
-    public Image(IFileInfo fileInfo)
+    public CssFile(IFileInfo info)
     {
-        this.FileInfo = fileInfo;
+        this.FileInfo = info;
     }
 
     public override string Name => this.FileInfo.PhysicalPath;
+
+    public IFileInfo FileInfo { get; }
 }
