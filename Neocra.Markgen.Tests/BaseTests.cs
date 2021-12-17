@@ -13,6 +13,7 @@ using Neocra.Markgen.Verbs.Watch;
 using NSubstitute;
 using Xunit.Abstractions;
 using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace Neocra.Markgen.Tests;
 
@@ -26,8 +27,11 @@ public class BaseTests
     {
         this.Scriban = this.Services.AddSubstituteSingleton<IScriban>();
         this.FileWriter = this.Services.AddSubstituteSingleton<IFileWriter>();
-        this.Services.AddSubstituteSingleton<IDeserializer>();
 
+        this.Services.AddSingleton(new DeserializerBuilder()
+            .IgnoreUnmatchedProperties()
+            .WithNamingConvention(HyphenatedNamingConvention.Instance)
+            .Build());
         this.Services.AddSingleton<BuildCommand>();
 
         this.Services.AddSingleton<MarkdownTransform>();

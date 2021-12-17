@@ -76,9 +76,57 @@ rapi-doc-mini{
 }
 
 .toc-list .is-active-li {
-    
+
 }
 
 .toc-list a.is-active-link {
     color: #FFFFFF;
+}
+
+.right-sample{
+    position: relative;
+}
+
+.right-sample .content > h1,
+.right-sample .content > h2,
+.right-sample .content > h3,
+.right-sample .content > h4,
+.right-sample .content > h5,
+.right-sample .content > blockquote,
+.right-sample .content > hr,
+.right-sample .content > ul,
+.right-sample .content > table,
+.right-sample .content > div,
+.right-sample .content > p
+{
+    margin-right: 50%;
+    width: 48%;
+}
+
+.right-sample .content
+{
+    position: relative;
+    z-index: 30;
+}
+
+.right-sample.markdown-body > h1,
+.right-sample.markdown-body > h2
+{
+    clear: both;
+}
+
+.right-sample .to-right{
+    margin-right: -18px !important;
+    float: right;
+    clear: right !important;
+    padding: 10px;
+}
+.right-sample .right-panel{
+    position: absolute;
+    width: 50%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #FAFAFA;
+    margin-right: 0;
 }

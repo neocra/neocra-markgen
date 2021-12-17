@@ -1,4 +1,6 @@
+using System;
 using Markdig.Renderers;
+using Markdig.Renderers.Html;
 using Markdig.Syntax;
 using YamlDotNet.Serialization;
 
@@ -23,6 +25,11 @@ public class CodeBlockRenderer : global::Markdig.Renderers.Html.CodeBlockRendere
 
             var rapidoc = this.deserializer.Deserialize<RapidocConfig>(content);
 
+            renderer.Write("<div")
+                .WriteAttributes(obj.TryGetAttributes())
+                .Write('>');
+
+            
             renderer.Write("<rapi-doc-mini ");
 
             if (!string.IsNullOrEmpty(rapidoc.SpecUrl))
@@ -62,6 +69,7 @@ public class CodeBlockRenderer : global::Markdig.Renderers.Html.CodeBlockRendere
             
             renderer.Write(">");
             renderer.Write("</rapi-doc-mini>");
+            renderer.Write("</div>");
         }
         else
         {
