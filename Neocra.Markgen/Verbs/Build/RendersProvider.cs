@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Markdig;
 using Markdig.Syntax;
@@ -40,13 +41,27 @@ public class RendersProvider
             switch (entry)
             {
                 case MarkdownPage markdownPage:
-                    await this.Render(menu, markdownPage, optionsSource, destination, baseUri);
+                    await this.Render(menu, markdownPage, optionsSource, destination, baseUri, 
+                        GetHeader(sourceEntries, optionsSource, destination));
                     break;
                 case Image image:
                     await this.Render(image, optionsSource, destination);
                     break;
+                case CssFile cssFile:
+                    await this.Render(cssFile, optionsSource, destination);
+                    break;
             }
         }
+    }
+
+    private HeaderLink[] GetHeader(List<Entry> sourceEntries, string source, string destination)
+    {
+        return sourceEntries.OfType<CssFile>()
+            .Where(c => 
+                Path.GetRelativePath(source, c.FileInfo.PhysicalPath)
+                .StartsWith("resources/"))
+            .Select(c => new HeaderLink("stylesheet", Path.GetRelativePath(source, c.FileInfo.PhysicalPath)))
+            .ToArray();
     }
 
     private MarkdownDocument DocumentProcessed(MarkdownDocument document, Func<LinkInline, string> urlRewriter)
@@ -69,7 +84,7 @@ public class RendersProvider
         return document;
     }
     
-    private async Task Render(MenuItem menu, MarkdownPage markdownPage, string optionsSource, string destination, string baseUri)
+    private async Task Render(MenuItem menu, MarkdownPage markdownPage, string optionsSource, string destination, string baseUri, HeaderLink[] header)
     {
         var pipeline = new MarkdownPipelineBuilder()
             .UseAdvancedExtensions()
@@ -81,7 +96,18 @@ public class RendersProvider
         var content = this.DocumentProcessed(markdownPage.MarkdownDocument,
             link => $"{baseUri}{link.Url}")
             .ToHtml(pipeline);
-        var markdownPage1 = new RenderModelMarkdownPage(menu, markdownPage, content, baseUri);
+
+        header =
+            new[] { new HeaderLink("stylesheet", "resources/default.css") }
+                .Union(header)
+                .ToArray();
+        
+        foreach (var headerLink in header)
+        {
+            this.logger.LogDebug("Headerlink : {rel} {href}", headerLink.Rel, headerLink.Href);
+        }
+        
+        var markdownPage1 = new RenderModelMarkdownPage(menu, markdownPage, content, baseUri, header);
 
         var mdFileInfo = markdownPage1.Model.FileInfo;
         var destinationFile = GetDestinationFile(optionsSource, destination, mdFileInfo);
@@ -110,9 +136,9 @@ public class RendersProvider
         return destinationFile;
     }
 
-    private async Task Render(Image image, string source, string destination)
+    private async Task Render(ICopyFile copyFile, string source, string destination)
     {
-        var destinationFile = Path.GetRelativePath(source, image.FileInfo.PhysicalPath);
+        var destinationFile = Path.GetRelativePath(source, copyFile.FileInfo.PhysicalPath);
         destinationFile = Path.Combine(destination, destinationFile);
 
         var directoryInfo = new FileInfo(destinationFile).Directory;
@@ -121,6 +147,6 @@ public class RendersProvider
             directoryInfo.Create();
         }
         
-        File.Copy(image.FileInfo.PhysicalPath, destinationFile, true);
+        this.fileWriter.Copy(copyFile.FileInfo.PhysicalPath, destinationFile, true);
     }
 }
