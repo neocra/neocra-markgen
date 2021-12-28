@@ -103,4 +103,23 @@ public class RenderHtmlTests : BaseTests
                         .Any(p => p.Inline
                             .OfType<LinkInline>().Any(l => l.Url == "test.html"))));
     }
+    
+    [Fact]
+    public async Task Should_do_not_rewrite_markdown_link_When_build_directory_with_link_empty_to_the_document()
+    {
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md", content:"[MyLink]()"));
+        });
+        
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        await this.Scriban.Received(1)
+            .RenderAsync(Arg.Any<string>(),
+                Arg.Is<TemplateContext>(t =>
+                    t.Get<MarkdownPage>("model").MarkdownDocument
+                        .OfType<ParagraphBlock>()
+                        .Any(p => p.Inline
+                            .OfType<LinkInline>().Any(l => l.Url == ""))));
+    }
 }

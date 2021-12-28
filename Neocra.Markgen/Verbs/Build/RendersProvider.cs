@@ -124,7 +124,7 @@ public class RendersProvider
 
     private static string RewriteUri(string baseUri, LinkInline link)
     {
-        if (link.Url == null)
+        if (string.IsNullOrEmpty(link.Url))
         {
             return $"{baseUri}";
         }
