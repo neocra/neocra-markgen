@@ -94,7 +94,7 @@ public class RendersProvider
             .Build();
         
         var content = this.DocumentProcessed(markdownPage.MarkdownDocument,
-            link => $"{baseUri}{link.Url}")
+            link => RewriteUri(baseUri, link))
             .ToHtml(pipeline);
 
         header =
@@ -120,6 +120,21 @@ public class RendersProvider
 
         await this.fileWriter.WriteAllTextAsync(destinationFile, 
             await this.markdownTransform.RenderHtml(markdownPage1, baseUri));
+    }
+
+    private static string RewriteUri(string baseUri, LinkInline link)
+    {
+        if (string.IsNullOrEmpty(link.Url))
+        {
+            return $"{baseUri}";
+        }
+        
+        if (link.Url.EndsWith(".md"))
+        {
+            return $"{baseUri}{link.Url.Substring(0, link.Url.Length - 3)}.html";
+        }
+
+        return $"{baseUri}{link.Url}";
     }
 
     private static string GetDestinationFile(string optionsSource, string destination, IFileInfo mdFileInfo)

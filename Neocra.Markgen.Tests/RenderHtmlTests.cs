@@ -1,4 +1,8 @@
+using System.Linq;
 using System.Threading.Tasks;
+using Markdig.Syntax;
+using Markdig.Syntax.Inlines;
+using Neocra.Markgen.Domain;
 using NSubstitute;
 using Scriban;
 using Xunit;
@@ -60,5 +64,62 @@ public class RenderHtmlTests : BaseTests
         await this.FileWriter.Received(1)
             .Received(1)
             .WriteAllTextAsync(".markgen/subPath/index.html", Arg.Any<string>());
+    }
+    
+    [Fact]
+    public async Task Should_rewrite_markdown_link_When_build_directory_with_link_to_the_document()
+    {
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md", content:"[MyLink](test.md)"));
+        });
+        
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        await this.Scriban.Received(1)
+            .RenderAsync(Arg.Any<string>(),
+                Arg.Is<TemplateContext>(t =>
+                    t.Get<MarkdownPage>("model").MarkdownDocument
+                        .OfType<ParagraphBlock>()
+                        .Any(p => p.Inline
+                            .OfType<LinkInline>().Any(l => l.Url == "test.html"))));
+    }
+    
+    [Fact]
+    public async Task Should_do_not_rewrite_markdown_link_When_build_directory_with_link_html_to_the_document()
+    {
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md", content:"[MyLink](test.html)"));
+        });
+        
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        await this.Scriban.Received(1)
+            .RenderAsync(Arg.Any<string>(),
+                Arg.Is<TemplateContext>(t =>
+                    t.Get<MarkdownPage>("model").MarkdownDocument
+                        .OfType<ParagraphBlock>()
+                        .Any(p => p.Inline
+                            .OfType<LinkInline>().Any(l => l.Url == "test.html"))));
+    }
+    
+    [Fact]
+    public async Task Should_do_not_rewrite_markdown_link_When_build_directory_with_link_empty_to_the_document()
+    {
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md", content:"[MyLink]()"));
+        });
+        
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        await this.Scriban.Received(1)
+            .RenderAsync(Arg.Any<string>(),
+                Arg.Is<TemplateContext>(t =>
+                    t.Get<MarkdownPage>("model").MarkdownDocument
+                        .OfType<ParagraphBlock>()
+                        .Any(p => p.Inline
+                            .OfType<LinkInline>().Any(l => l.Url == ""))));
     }
 }
