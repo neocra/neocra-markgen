@@ -20,17 +20,20 @@ public class RendersProvider
     private readonly MarkdownTransform markdownTransform;
     private readonly RapidocExtension rapidocExtension;
     private readonly IFileWriter fileWriter;
+    private readonly UriHelper uriHelper;
 
     public RendersProvider(
         ILogger<RendersProvider> logger,
         MarkdownTransform markdownTransform,
         RapidocExtension rapidocExtension,
-        IFileWriter fileWriter)
+        IFileWriter fileWriter, 
+        UriHelper uriHelper)
     {
         this.logger = logger;
         this.markdownTransform = markdownTransform;
         this.rapidocExtension = rapidocExtension;
         this.fileWriter = fileWriter;
+        this.uriHelper = uriHelper;
     }
 
     public async Task Renders(List<Entry> sourceEntries, MenuItem menu, string optionsSource, string destination, string baseUri)
@@ -122,19 +125,9 @@ public class RendersProvider
             await this.markdownTransform.RenderHtml(markdownPage1, baseUri));
     }
 
-    private static string RewriteUri(string baseUri, LinkInline link)
+    private string RewriteUri(string baseUri, LinkInline link)
     {
-        if (string.IsNullOrEmpty(link.Url))
-        {
-            return $"{baseUri}";
-        }
-        
-        if (link.Url.EndsWith(".md"))
-        {
-            return $"{baseUri}{link.Url.Substring(0, link.Url.Length - 3)}.html";
-        }
-
-        return $"{baseUri}{link.Url}";
+        return this.uriHelper.GetLinkUrl(baseUri, link.Url);
     }
 
     private static string GetDestinationFile(string optionsSource, string destination, IFileInfo mdFileInfo)

@@ -23,7 +23,7 @@ public class ExtraFilesTests : BaseTests
     {
         this.AddFileProviderFactory(p =>
         {
-            AddGetDirectoryContents(p, "", GetFileInfo("README.md", "/README.md"));
+            AddGetDirectoryContents(p, "", GetFileInfo("test.md", "/test.md"));
         });
 
         await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
@@ -40,7 +40,7 @@ public class ExtraFilesTests : BaseTests
             AddGetDirectoryContents(p, "", 
                 GetDirectoryInfo("resources", "/resources"),
                 GetFileInfo("my.css", "/resources/my.css"),
-                GetFileInfo("README.md", "/README.md"));
+                GetFileInfo("test.md", "/test.md"));
         });
 
         await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
@@ -57,7 +57,7 @@ public class ExtraFilesTests : BaseTests
             AddGetDirectoryContents(p, "", 
                 GetDirectoryInfo("resources", "/resources"),
                 GetFileInfo("my.css", "/resources/my.css"),
-                GetFileInfo("README.md", "/README.md"));
+                GetFileInfo("test.md", "/test.md"));
         });
 
         await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
@@ -76,7 +76,7 @@ public class ExtraFilesTests : BaseTests
             AddGetDirectoryContents(p, "", 
                 GetDirectoryInfo("resources", "/resources"),
                 GetFileInfo("my.css", "/resources/my.css"),
-                GetFileInfo("README.md", "/README.md"));
+                GetFileInfo("test.md", "/test.md"));
         });
 
         await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
