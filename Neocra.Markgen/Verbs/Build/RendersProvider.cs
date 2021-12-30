@@ -45,7 +45,7 @@ public class RendersProvider
             {
                 case MarkdownPage markdownPage:
                     await this.Render(menu, markdownPage, optionsSource, destination, baseUri, 
-                        GetHeader(sourceEntries, optionsSource, destination));
+                        this.GetHeader(sourceEntries, optionsSource));
                     break;
                 case Image image:
                     await this.Render(image, optionsSource, destination);
@@ -57,7 +57,7 @@ public class RendersProvider
         }
     }
 
-    private HeaderLink[] GetHeader(List<Entry> sourceEntries, string source, string destination)
+    private HeaderLink[] GetHeader(List<Entry> sourceEntries, string source)
     {
         return sourceEntries.OfType<CssFile>()
             .Where(c => 
@@ -67,26 +67,6 @@ public class RendersProvider
             .ToArray();
     }
 
-    private MarkdownDocument DocumentProcessed(MarkdownDocument document, Func<LinkInline, string> urlRewriter)
-    {
-        var enumerator = document.Descendants().GetEnumerator();
-        try
-        {
-            while (enumerator.MoveNext())
-            {
-                if (enumerator.Current is LinkInline current)
-                    current.Url = urlRewriter(current);
-            }
-        }
-        finally
-        {
-            if (enumerator is IDisposable disposable)
-                disposable.Dispose();
-        }
-        
-        return document;
-    }
-    
     private async Task Render(MenuItem menu, MarkdownPage markdownPage, string optionsSource, string destination, string baseUri, HeaderLink[] header)
     {
         var pipeline = new MarkdownPipelineBuilder()
@@ -124,7 +104,43 @@ public class RendersProvider
         await this.fileWriter.WriteAllTextAsync(destinationFile, 
             await this.markdownTransform.RenderHtml(markdownPage1, baseUri));
     }
+    
+    private Task Render(ICopyFile copyFile, string source, string destination)
+    {
+        var destinationFile = Path.GetRelativePath(source, copyFile.FileInfo.PhysicalPath);
+        destinationFile = Path.Combine(destination, destinationFile);
 
+        var directoryInfo = new FileInfo(destinationFile).Directory;
+        if (directoryInfo is { Exists: false })
+        {
+            directoryInfo.Create();
+        }
+        
+        this.fileWriter.Copy(copyFile.FileInfo.PhysicalPath, destinationFile, true);
+        
+        return Task.CompletedTask;
+    }
+    
+    private MarkdownDocument DocumentProcessed(MarkdownDocument document, Func<LinkInline, string> urlRewriter)
+    {
+        var enumerator = document.Descendants().GetEnumerator();
+        try
+        {
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Current is LinkInline current)
+                    current.Url = urlRewriter(current);
+            }
+        }
+        finally
+        {
+            if (enumerator is IDisposable disposable)
+                disposable.Dispose();
+        }
+        
+        return document;
+    }
+    
     private string RewriteUri(string baseUri, LinkInline link)
     {
         return this.uriHelper.GetLinkUrl(baseUri, link.Url);
@@ -142,21 +158,5 @@ public class RendersProvider
         destinationFile = Path.Combine(destination, destinationFile);
         destinationFile = Path.ChangeExtension(destinationFile, ".html");
         return destinationFile;
-    }
-
-    private Task Render(ICopyFile copyFile, string source, string destination)
-    {
-        var destinationFile = Path.GetRelativePath(source, copyFile.FileInfo.PhysicalPath);
-        destinationFile = Path.Combine(destination, destinationFile);
-
-        var directoryInfo = new FileInfo(destinationFile).Directory;
-        if (directoryInfo is { Exists: false })
-        {
-            directoryInfo.Create();
-        }
-        
-        this.fileWriter.Copy(copyFile.FileInfo.PhysicalPath, destinationFile, true);
-        
-        return Task.CompletedTask;
     }
 }
