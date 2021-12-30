@@ -144,7 +144,7 @@ public class RendersProvider
         return destinationFile;
     }
 
-    private async Task Render(ICopyFile copyFile, string source, string destination)
+    private Task Render(ICopyFile copyFile, string source, string destination)
     {
         var destinationFile = Path.GetRelativePath(source, copyFile.FileInfo.PhysicalPath);
         destinationFile = Path.Combine(destination, destinationFile);
@@ -156,5 +156,7 @@ public class RendersProvider
         }
         
         this.fileWriter.Copy(copyFile.FileInfo.PhysicalPath, destinationFile, true);
+        
+        return Task.CompletedTask;
     }
 }

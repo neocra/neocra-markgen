@@ -108,7 +108,7 @@ public class RenderHtmlTests : BaseTests
         return Arg.Is<TemplateContext>(t =>
             t.Get<MarkdownPage>("model").MarkdownDocument
                 .OfType<ParagraphBlock>()
-                .Any(p => p.Inline
+                .Any(p => p.Inline != null && p.Inline
                     .OfType<LinkInline>().Any(predicate)));
     }
 }
