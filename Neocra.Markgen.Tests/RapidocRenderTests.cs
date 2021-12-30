@@ -25,7 +25,7 @@ public class RapidocRenderTests : BaseTests
     {
         this.AddFileProviderFactory(p =>
         {
-            AddGetDirectoryContents(p, "", GetFileInfo("README.md", "/README.md", 
+            AddGetDirectoryContents(p, "", GetFileInfo("test.md", "/test.md", 
 markdown));
         });
 

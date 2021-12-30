@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Markdig.Syntax;
@@ -65,61 +66,49 @@ public class RenderHtmlTests : BaseTests
             .Received(1)
             .WriteAllTextAsync(".markgen/subPath/index.html", Arg.Any<string>());
     }
-    
-    [Fact]
-    public async Task Should_rewrite_markdown_link_When_build_directory_with_link_to_the_document()
+
+    [Theory]
+    [InlineData(true, "http://www.site.com","http://www.site.com")]
+    [InlineData(true, "https://www.site.com","https://www.site.com")]
+    [InlineData(true, "", "")]
+    [InlineData(true, "/", "/base-uri/")]
+    [InlineData(false, "", "")]
+    [InlineData(false, "test.md", "test.html")]
+    [InlineData(false, "test.html", "test.html")]
+    [InlineData(false, "/test.html", "/test.html")]
+    [InlineData(true, "test.md", "test.html")]
+    [InlineData(true, "/test.md", "/base-uri/test.html")]
+    [InlineData(true, "test.html", "test.html")]
+    [InlineData(true, "/test.html", "/base-uri/test.html")]
+    [InlineData(false, "README.md", "index.html")]
+    [InlineData(false, "/README.md", "/index.html")]
+    public async Task Should_apply_rewrite_rule_on_markdown_link_When_build_directory(bool baseUri, string uri, string expectedUri)
     {
         AddFileProviderFactory(p =>
         {
-            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md", content:"[MyLink](test.md)"));
+            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md", content:$"[MyLink]({uri})"));
         });
-        
-        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        if (baseUri)
+        {
+            await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/", "--base-uri", "/base-uri/");
+        }
+        else
+        {
+            await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+        }
 
         await this.Scriban.Received(1)
             .RenderAsync(Arg.Any<string>(),
-                Arg.Is<TemplateContext>(t =>
-                    t.Get<MarkdownPage>("model").MarkdownDocument
-                        .OfType<ParagraphBlock>()
-                        .Any(p => p.Inline
-                            .OfType<LinkInline>().Any(l => l.Url == "test.html"))));
+                ArgContainsAnyLinkIs(l => l.Url == expectedUri));
     }
     
-    [Fact]
-    public async Task Should_do_not_rewrite_markdown_link_When_build_directory_with_link_html_to_the_document()
+    private static TemplateContext ArgContainsAnyLinkIs(Func<LinkInline, bool> predicate)
     {
-        AddFileProviderFactory(p =>
-        {
-            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md", content:"[MyLink](test.html)"));
-        });
-        
-        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
-
-        await this.Scriban.Received(1)
-            .RenderAsync(Arg.Any<string>(),
-                Arg.Is<TemplateContext>(t =>
-                    t.Get<MarkdownPage>("model").MarkdownDocument
-                        .OfType<ParagraphBlock>()
-                        .Any(p => p.Inline
-                            .OfType<LinkInline>().Any(l => l.Url == "test.html"))));
-    }
-    
-    [Fact]
-    public async Task Should_do_not_rewrite_markdown_link_When_build_directory_with_link_empty_to_the_document()
-    {
-        AddFileProviderFactory(p =>
-        {
-            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md", content:"[MyLink]()"));
-        });
-        
-        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
-
-        await this.Scriban.Received(1)
-            .RenderAsync(Arg.Any<string>(),
-                Arg.Is<TemplateContext>(t =>
-                    t.Get<MarkdownPage>("model").MarkdownDocument
-                        .OfType<ParagraphBlock>()
-                        .Any(p => p.Inline
-                            .OfType<LinkInline>().Any(l => l.Url == ""))));
+        return Arg.Is<TemplateContext>(t =>
+            t.Get<MarkdownPage>("model").MarkdownDocument
+                .OfType<ParagraphBlock>()
+                .Any(p => p.Inline != null && p.Inline
+                    .OfType<LinkInline>().Any(predicate)));
     }
 }
