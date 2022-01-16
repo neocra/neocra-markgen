@@ -18,10 +18,8 @@ public class XuniTestConsole : IAnsiConsole
         console = new AnsiConsoleFactory().Create(new AnsiConsoleSettings()
         {
             Ansi = AnsiSupport.Yes,
-            ColorSystem = ColorSystemSupport.TrueColor,
-            // Out = (IAnsiConsoleOutput) new AnsiConsoleOutput(this),
+            ColorSystem = ColorSystemSupport.NoColors,
             Interactive = InteractionSupport.No,
-            // ExclusivityMode = new NoopExclusivityMode(),
             Enrichment = new ProfileEnrichment()
             {
                 UseDefaultEnrichers = false
