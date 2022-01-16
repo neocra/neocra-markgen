@@ -28,13 +28,13 @@ public sealed class TypeRegistrar : ITypeRegistrar
         this.builder.AddSingleton(service, implementation);
     }
 
-    public void RegisterLazy(Type service, Func<object> func)
+    public void RegisterLazy(Type service, Func<object> factory)
     {
-        if (func is null)
+        if (factory is null)
         {
-            throw new ArgumentNullException(nameof(func));
+            throw new ArgumentNullException(nameof(factory));
         }
 
-        this.builder.AddSingleton(service, (provider) => func());
+        this.builder.AddSingleton(service, (_) => factory());
     }
 }
