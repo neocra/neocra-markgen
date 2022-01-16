@@ -9,19 +9,21 @@ a{
     color: #707070;
 }
 
+article.markdown-body{
+    padding: 18px;
+}
+
+article.markdown-body{
+    margin-left: 240px;
+}
 
 nav{
-    grid-column: 1;
     position: fixed;
     width: 240px;
     height: 100%;
     overflow: auto;
 }
 
-article.markdown-body{
-    margin-left: 240px;
-    padding: 18px;
-}
 
 nav ul{
     padding: 0;
@@ -29,24 +31,60 @@ nav ul{
     list-style-type: none;
 }
 
-nav > ul > li > a{
+nav #nav-button{
+    display: none;
+}
+
+nav .content > ul > li > a{
     display: block;
     padding: 18px;
     text-decoration: none;
     background-color: #FAFAFA;
 }
 
-nav > ul > li {
+nav .content > ul > li {
     margin: 0 0 2px 0;
 }
 
-nav > ul > li.selected > a{
+nav .content > ul > li.selected > a{
     background-color: #333333;
     color: #FFFFFF;
 }
 
-rapi-doc-mini{
-    height: auto;
+@media screen and (max-width: 950px) {
+    article.markdown-body{
+        margin-left: 0px;
+    }
+
+    nav{
+        z-index: 30;
+    }
+
+    nav #nav-button{
+        display: block;
+        left: 280px;
+        position: absolute;
+        transform: rotate(-90deg);
+    }
+
+    nav{
+        position: fixed;
+        left: -280px;
+        bottom: 0;
+        top: 0;
+        overflow-y: auto;
+        width: 300px;
+    }
+
+    nav .content{
+        width: 280px;
+        background: #FFFFFF;
+    }
+
+    nav.open{
+        left: 0;
+        transition: left 0.3s ease-in-out;
+    }
 }
 
 .js-toc{
@@ -60,6 +98,10 @@ rapi-doc-mini{
 .toc-list li{
     background-color: #707070;
 }
+.js-toc >.toc-list {
+    border-left: 4px solid #FFFFFF;
+    margin-left: 10px;
+}
 
 .toc-list .toc-list-item a{
     display: block;
@@ -70,9 +112,13 @@ rapi-doc-mini{
 }
 
 .toc-link::before{
-    margin-left: 8px;
+    width: 0;
+}
+
+a.is-active-link:before{
     width: 4px;
-    margin-top: -8px;
+    height: 24px;
+    margin-left: 10px;
 }
 
 .toc-list .is-active-li {
@@ -83,50 +129,56 @@ rapi-doc-mini{
     color: #FFFFFF;
 }
 
-.right-sample{
-    position: relative;
+
+rapi-doc-mini{
+    height: auto;
 }
 
-.right-sample .content > h1,
-.right-sample .content > h2,
-.right-sample .content > h3,
-.right-sample .content > h4,
-.right-sample .content > h5,
-.right-sample .content > blockquote,
-.right-sample .content > hr,
-.right-sample .content > ul,
-.right-sample .content > table,
-.right-sample .content > div,
-.right-sample .content > p
-{
-    margin-right: 50%;
-    width: 48%;
-}
+@media screen and (min-width: 1250px) {
 
-.right-sample .content
-{
-    position: relative;
-    z-index: 30;
-}
+    .right-sample {
+        position: relative;
+    }
 
-.right-sample.markdown-body > h1,
-.right-sample.markdown-body > h2
-{
-    clear: both;
-}
+    .right-sample .content > h1,
+    .right-sample .content > h2,
+    .right-sample .content > h3,
+    .right-sample .content > h4,
+    .right-sample .content > h5,
+    .right-sample .content > blockquote,
+    .right-sample .content > hr,
+    .right-sample .content > ul,
+    .right-sample .content > table,
+    .right-sample .content > div,
+    .right-sample .content > p {
+        margin-right: 50%;
+        width: 48%;
+    }
 
-.right-sample .to-right{
-    margin-right: -18px !important;
-    float: right;
-    clear: right !important;
-    padding: 10px;
-}
-.right-sample .right-panel{
-    position: absolute;
-    width: 50%;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: #FAFAFA;
-    margin-right: 0;
+    .right-sample .content {
+        position: relative;
+        z-index: 30;
+    }
+
+    .right-sample.markdown-body > h1,
+    .right-sample.markdown-body > h2 {
+        clear: both;
+    }
+
+    .right-sample .to-right {
+        margin-right: -18px !important;
+        float: right;
+        clear: right !important;
+        padding: 10px;
+    }
+
+    .right-sample .right-panel {
+        position: absolute;
+        width: 50%;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #FAFAFA;
+        margin-right: 0;
+    }
 }

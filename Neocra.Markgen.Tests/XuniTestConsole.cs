@@ -1,28 +1,50 @@
-using System.CommandLine;
-using System.CommandLine.IO;
+using System.IO;
+using System.Runtime.CompilerServices;
+using Spectre.Console;
+using Spectre.Console.Rendering;
+using Spectre.Console.Testing;
 using Xunit.Abstractions;
 
 namespace Neocra.Markgen.Tests;
 
-public class XuniTestConsole : IConsole, IStandardStreamWriter
+public class XuniTestConsole : IAnsiConsole
 {
     private readonly ITestOutputHelper testOutputHelper;
+    private readonly IAnsiConsole console;
 
     public XuniTestConsole(ITestOutputHelper testOutputHelper)
     {
         this.testOutputHelper = testOutputHelper;
-        this.Out = this;
-        this.Error = this;
+        console = new AnsiConsoleFactory().Create(new AnsiConsoleSettings()
+        {
+            Ansi = AnsiSupport.Yes,
+            ColorSystem = ColorSystemSupport.TrueColor,
+            // Out = (IAnsiConsoleOutput) new AnsiConsoleOutput(this),
+            Interactive = InteractionSupport.No,
+            // ExclusivityMode = new NoopExclusivityMode(),
+            Enrichment = new ProfileEnrichment()
+            {
+                UseDefaultEnrichers = false
+            }
+        });
     }
 
-    public IStandardStreamWriter Out { get; }
-    public bool IsOutputRedirected => false;
-    public IStandardStreamWriter Error { get; }
-    public bool IsErrorRedirected => false;
-    public bool IsInputRedirected => false;
-    
-    public void Write(string value)
+    public void Clear(bool home)
     {
-        this.testOutputHelper.WriteLine(value);
+        
     }
+
+    public void Write(IRenderable renderable)
+    {
+        foreach (var segment in renderable.Render(new TestCapabilities(){}.CreateRenderContext(), 80))
+        {
+            this.testOutputHelper.WriteLine(segment.Text);
+        }
+    }
+
+    public Profile Profile => console.Profile;
+    public IAnsiConsoleCursor Cursor => console.Cursor;
+    public IAnsiConsoleInput Input => console.Input;
+    public IExclusivityMode ExclusivityMode => console.ExclusivityMode;
+    public RenderPipeline Pipeline => console.Pipeline;
 }
