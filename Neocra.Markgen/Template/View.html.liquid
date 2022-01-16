@@ -14,19 +14,12 @@
 </head>
 <body>
     <nav>
-        <a href="#" id="nav-button">
-          <span>
-            NAV
-          </span>
-        </a>
-        <div class="content">
-            {{
-                children = {children: menu_item.children}
-                with children
-                    include "Menu"
-                end
-            }}
-        </div>
+        {{ 
+            children = {children: menu_item.children}
+            with children
+                include "Menu"
+            end
+        }}
     </nav>
     <article class="markdown-body js-toc-content right-sample">
         <div class="right-panel"></div>
