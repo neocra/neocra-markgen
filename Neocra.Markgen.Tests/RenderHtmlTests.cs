@@ -35,6 +35,23 @@ public class RenderHtmlTests : BaseTests
         await this.Scriban.Received(1)
             .RenderAsync(Arg.Any<string>(), Arg.Any<TemplateContext>());
     }
+    
+    
+    [Fact]
+    public async Task Should_render_with_has_right_sample_When_have_to_right()
+    {
+        AddFileProviderFactory(p =>
+        {
+            AddGetDirectoryContents(p, "", GetFileInfo("Toto.md", "/Toto.md", "# Title {.to-right}\n"));
+        });
+        
+        await Program.RunAsync(this.Services, new XuniTestConsole(this.testOutputHelper), "build", "--source", "/");
+
+        await this.Scriban.Received(1)
+            .RenderAsync(Arg.Any<string>(),
+                Arg.Is<TemplateContext>(
+                    t => t.Get<bool>("has_right_sample")));
+    }
 
     [Fact]
     public async Task Should_readme_file_is_convert_to_index_html_When_build_directory()
