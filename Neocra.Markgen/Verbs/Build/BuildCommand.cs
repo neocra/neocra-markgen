@@ -8,11 +8,11 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Neocra.Markgen.Domain;
 using Neocra.Markgen.Infrastructure;
-using Neocra.Markgen.Tools;
+using Spectre.Console.Cli;
 
 namespace Neocra.Markgen.Verbs.Build;
 
-public class BuildCommand : IHandlerCommand<BuildOptions>
+public class BuildCommand : AsyncCommand<BuildOptions>
 {
     private readonly ILogger logger;
     private readonly RendersProvider rendersProvider;
@@ -34,41 +34,6 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
         this.fileProviderFactory = fileProviderFactory;
         this.uriHelper = uriHelper;
         this.fileWriter = fileWriter;
-    }
-        
-    public async Task RunAsync(BuildOptions options)
-    {
-        this.logger.LogInformation("Begin build");
-        var optionsSource = ".";
-
-        if (!string.IsNullOrEmpty(options.Source))
-        {
-            optionsSource = options.Source;
-        }
-        
-        var destination = ".markgen";
-        if (!string.IsNullOrEmpty(options.Destination))
-        {
-            destination = options.Destination;
-        }
-        
-        var directorySource = new DirectoryInfo(optionsSource);
-        var physicalFileProvider =
-            fileProviderFactory.GetProvider(directorySource.FullName);
-        
-        var (sourceEntries, menu) = await this.GetSources(physicalFileProvider, 
-            "",
-            optionsSource, 
-            optionsSource,
-            options.BaseUri ?? string.Empty);
-
-        this.logger.LogDebug("Menu is :");
-
-        this.LogMenu(menu, string.Empty);
-
-        await this.rendersProvider.Renders(sourceEntries, menu, optionsSource, destination, options.BaseUri ?? string.Empty);
-        
-        await this.CopyEmbeddedFile(Path.Combine(destination, "resources"), "default.css");
     }
     
     private void LogMenu(MenuItem menu, string baseString)
@@ -213,5 +178,42 @@ public class BuildCommand : IHandlerCommand<BuildOptions>
             fileWriter.CreateDirectory(destination);
             await this.fileWriter.WriteAllTextAsync( Path.Combine(destination, name), content);
         }
+    }
+
+    public override async Task<int> ExecuteAsync(CommandContext context, BuildOptions settings)
+    {
+        this.logger.LogInformation("Begin build");
+        var optionsSource = ".";
+
+        if (!string.IsNullOrEmpty(settings.Source))
+        {
+            optionsSource = settings.Source;
+        }
+        
+        var destination = ".markgen";
+        if (!string.IsNullOrEmpty(settings.Destination))
+        {
+            destination = settings.Destination;
+        }
+        
+        var directorySource = new DirectoryInfo(optionsSource);
+        var physicalFileProvider =
+            fileProviderFactory.GetProvider(directorySource.FullName);
+        
+        var (sourceEntries, menu) = await this.GetSources(physicalFileProvider, 
+            "",
+            optionsSource, 
+            optionsSource,
+            settings.BaseUri ?? string.Empty);
+
+        this.logger.LogDebug("Menu is :");
+
+        this.LogMenu(menu, string.Empty);
+
+        await this.rendersProvider.Renders(sourceEntries, menu, optionsSource, destination, settings.BaseUri ?? string.Empty);
+        
+        await this.CopyEmbeddedFile(Path.Combine(destination, "resources"), "default.css");
+        
+        return 0;
     }
 }

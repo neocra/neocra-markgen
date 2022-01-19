@@ -7,6 +7,7 @@ public class DiagramExtension : IMarkdownExtension
 {
     public void Setup(MarkdownPipelineBuilder pipeline)
     {
+        // No setup is required when analyse markdown for DiagramExtension
     }
 
     public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)
