@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Markdig;
+using Markdig.Renderers.Html;
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
 using Microsoft.Extensions.FileProviders;
@@ -89,9 +90,10 @@ public class RendersProvider
         {
             this.logger.LogDebug("Headerlink : {rel} {href}", headerLink.Rel, headerLink.Href);
         }
-        
-        var markdownPage1 = new RenderModelMarkdownPage(menu, markdownPage, content, baseUri, header);
 
+        bool hasRightSample = markdownPage.MarkdownDocument.Any(IsRight);
+        var markdownPage1 = new RenderModelMarkdownPage(menu, markdownPage, content, baseUri, header, hasRightSample);
+        
         var mdFileInfo = markdownPage1.Model.FileInfo;
         var destinationFile = GetDestinationFile(optionsSource, destination, mdFileInfo);
 
@@ -104,7 +106,12 @@ public class RendersProvider
         await this.fileWriter.WriteAllTextAsync(destinationFile, 
             await this.markdownTransform.RenderHtml(markdownPage1, baseUri));
     }
-    
+
+    private bool IsRight(Block arg)
+    {
+        return arg.GetAttributes().Classes?.Contains("to-right") ?? false;
+    }
+
     private Task Render(ICopyFile copyFile, string source, string destination)
     {
         var destinationFile = Path.GetRelativePath(source, copyFile.FileInfo.PhysicalPath);

@@ -28,7 +28,7 @@
             }}
         </div>
     </nav>
-    <article class="markdown-body js-toc-content right-sample">
+    <article class="markdown-body js-toc-content {{ has_right_sample ? 'right-sample' : '' }}">
         <div class="right-panel"></div>
         <div class="content">
             {{ markdown_page_content_html }}
