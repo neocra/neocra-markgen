@@ -13,13 +13,20 @@
     <script>mermaid.initialize({startOnLoad:true});</script>
 </head>
 <body>
-    <nav>
-        {{ 
-            children = {children: menu_item.children}
-            with children
-                include "Menu"
-            end
-        }}
+    <nav  id="nav">
+        <a href="#" id="nav-button">
+          <span>
+            NAV
+          </span>
+        </a>
+        <div class="content">
+            {{
+                children = {children: menu_item.children}
+                with children
+                    include "Menu"
+                end
+            }}
+        </div>
     </nav>
     <article class="markdown-body js-toc-content right-sample">
         <div class="right-panel"></div>
@@ -39,6 +46,15 @@
         // For headings inside relative or absolute positioned containers within content.
         hasInnerContainers: false,
     });
+    
+    document.getElementById("nav-button").onclick = function (){
+        var content = document.getElementById("nav");
+        if(content.className == ''){
+            content.className = 'open';
+        }else{
+            content.className = '';
+        }
+    };
 </script>
 </body>
 </html>
