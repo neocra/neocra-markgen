@@ -1,16 +1,15 @@
-﻿using System.CommandLine;
-using System.CommandLine.IO;
+﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Neocra.Markgen.Domain;
 using Neocra.Markgen.Domain.Markdig;
 using Neocra.Markgen.Infrastructure;
-using Neocra.Markgen.Tools;
 using Neocra.Markgen.Verbs.Build;
 using Neocra.Markgen.Verbs.Watch;
 using Serilog;
-using Serilog.Events;
-using Serilog.Sinks.SystemConsole.Themes;
+using Serilog.Sinks.Spectre;
+using Spectre.Console;
+using Spectre.Console.Cli;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -24,24 +23,28 @@ namespace Neocra.Markgen
 
             AddServices(serviceCollection);
 
-            await RunAsync(serviceCollection, new SystemConsole(), args);
+            await RunAsync(serviceCollection, null, args);
+        }
+        
+        public static Task RunAsync(ServiceCollection serviceCollection, IAnsiConsole? console, params string[] args)
+        {
+            var registrar = new TypeRegistrar(serviceCollection);            
+            var app = new CommandApp(registrar);
+            app.Configure(config =>
+            {
+                config.Settings.ApplicationName = "markgen";
+                config.Settings.Console = console;
+                config.AddCommand<BuildCommand>("build");
+                config.AddCommand<WatchCommand>("warch");
+                config.SetExceptionHandler(HandleException);
+            });
+
+            return app.RunAsync(args);
         }
 
-        public static async Task RunAsync(ServiceCollection serviceCollection, IConsole console, params string[] args)
+        private static void HandleException(Exception obj)
         {
-            var builder = serviceCollection.BuildServiceProvider();
-
-            var handleFactory = new HandlerFactory(builder);
-
-            var command = new RootCommand
-            {
-                handleFactory.Command<BuildDefinition>(),
-                handleFactory.Command<WatchDefinition>(),
-            };
-
-            command.Name = "markgen";
-
-            await command.InvokeAsync(args, console);
+            Log.Logger.Error(obj, "Unhandle exception");
         }
 
         private static void AddServices(ServiceCollection services)
@@ -68,11 +71,9 @@ namespace Neocra.Markgen
                 .Build());
             
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
                 .Enrich.FromLogContext()
-                .WriteTo.Console(
-                    LogEventLevel.Debug,
-                    theme:SystemConsoleTheme.None)
+                .WriteTo.Spectre("{Timestamp:HH:mm:ss} [{Level:u4}] {Message:lj}{NewLine}{Exception}")
+                .MinimumLevel.Debug()
                 .CreateLogger();
             
 

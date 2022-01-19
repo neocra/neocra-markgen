@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Neocra.Markgen.Domain;
-using Neocra.Markgen.Tools;
+using Spectre.Console.Cli;
 
 namespace Neocra.Markgen.Verbs.Watch
 {
-    public class WatchCommand : IHandlerCommand<WatchOptions>
+    public class WatchCommand : AsyncCommand<WatchOptions>
     {
         private readonly MarkdownTransform markdownTransform;
 
@@ -18,21 +18,6 @@ namespace Neocra.Markgen.Verbs.Watch
         public WatchCommand(MarkdownTransform markdownTransform)
         {
             this.markdownTransform = markdownTransform;
-        }
-
-        public Task RunAsync(WatchOptions options)
-        {
-            if (!string.IsNullOrEmpty(options.Source))
-            {
-                this.source = options.Source;
-            }
-            
-            return Host.CreateDefaultBuilder()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.Configure(this.Configure);
-                })
-                .Build().RunAsync();
         }
         
         private void Configure(IApplicationBuilder app)
@@ -70,6 +55,23 @@ namespace Neocra.Markgen.Verbs.Watch
                     await next(context);
                 });
             });
+        }
+
+        public override async Task<int> ExecuteAsync(CommandContext context, WatchOptions settings)
+        {
+            if (!string.IsNullOrEmpty(settings.Source))
+            {
+                this.source = settings.Source;
+            }
+            
+            await Host.CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.Configure(this.Configure);
+                })
+                .Build().RunAsync();
+            
+            return 0;
         }
     }
 

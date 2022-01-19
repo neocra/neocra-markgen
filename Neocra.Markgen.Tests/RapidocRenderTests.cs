@@ -1,6 +1,4 @@
-using System.Linq;
 using System.Threading.Tasks;
-using Neocra.Markgen.Domain;
 using NSubstitute;
 using Scriban;
 using Xunit;
