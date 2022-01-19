@@ -51,7 +51,7 @@ nav .content > ul > li.selected > a{
     color: #FFFFFF;
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1020px) {
     article.markdown-body{
         margin-left: 0px;
     }
@@ -65,6 +65,7 @@ nav .content > ul > li.selected > a{
         left: 280px;
         position: absolute;
         transform: rotate(-90deg);
+        margin: 16px 0;
     }
 
     nav{
@@ -74,6 +75,8 @@ nav .content > ul > li.selected > a{
         top: 0;
         overflow-y: auto;
         width: 300px;
+        transition: left 0.3s ease-in-out;
+        z-index: 100;
     }
 
     nav .content{
@@ -134,7 +137,7 @@ rapi-doc-mini{
     height: auto;
 }
 
-@media screen and (min-width: 1250px) {
+@media screen and (min-width: 830px) {
 
     .right-sample {
         position: relative;

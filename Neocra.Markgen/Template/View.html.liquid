@@ -13,7 +13,7 @@
     <script>mermaid.initialize({startOnLoad:true});</script>
 </head>
 <body>
-    <nav>
+    <nav  id="nav">
         <a href="#" id="nav-button">
           <span>
             NAV
@@ -46,6 +46,15 @@
         // For headings inside relative or absolute positioned containers within content.
         hasInnerContainers: false,
     });
+    
+    document.getElementById("nav-button").onclick = function (){
+        var content = document.getElementById("nav");
+        if(content.className == ''){
+            content.className = 'open';
+        }else{
+            content.className = '';
+        }
+    };
 </script>
 </body>
 </html>
