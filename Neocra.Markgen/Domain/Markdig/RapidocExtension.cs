@@ -14,6 +14,7 @@ public class RapidocExtension : IMarkdownExtension
     
     public void Setup(MarkdownPipelineBuilder pipeline)
     {
+        // No setup is required when analyse markdown for RapidocExtension
     }
 
     public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)

@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Scriban;
 using Scriban.Parsing;
 using Scriban.Runtime;
@@ -11,13 +10,6 @@ namespace Neocra.Markgen.Domain;
 
 public class HtmlEngineLoader : ITemplateLoader
 {
-    private readonly ILogger<HtmlEngineLoader> logger;
-
-    public HtmlEngineLoader(ILogger<HtmlEngineLoader> logger)
-    {
-        this.logger = logger;
-    }
-
     public string GetPath(TemplateContext context, SourceSpan callerSpan, string templateName)
     {
         return $"Neocra.Markgen.Template.{templateName}.html.liquid";
